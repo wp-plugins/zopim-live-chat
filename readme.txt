@@ -60,7 +60,7 @@ Connect to your visitors with this live chat widget! Improve interaction with yo
 == Screenshots ==
 
 1. Chat window on your website
-2. Typical usage session
+2. Typical usage session in the dashboard
 3. Account Configuration
 4. Styling and customiation
 
