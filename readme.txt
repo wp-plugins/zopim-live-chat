@@ -10,6 +10,7 @@ Zopim embeds a chatbar on your website, so that any visitor can chat with you di
 == Description ==
 
 Work in progress: To be launched on 25th January, 2010.
+
 Connect to your visitors with this live chat widget! Improve interaction with your users and increase the time they spend on your site. Great for online service and support. 
 
 **Features:**
