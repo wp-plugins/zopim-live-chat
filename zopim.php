@@ -9,8 +9,8 @@ Version: 0.6
 Author URI: http://www.isidorechan.com/
  */
 
-define('ZOPIM_SCRIPT_DOMAIN', "livechat.zopim.net");
-define('ZOPIM_BASE_URL', "https://www.sandbox.zopim.com/");
+define('ZOPIM_SCRIPT_DOMAIN', "zopim.com");
+define('ZOPIM_BASE_URL', "https://www.zopim.com/");
 define('ZOPIM_GETACCOUNTDETAILS_URL', ZOPIM_BASE_URL."plugins/getAccountDetails");
 define('ZOPIM_SETDISPLAYNAME_URL', ZOPIM_BASE_URL."plugins/setDisplayName");
 define('ZOPIM_IMINFO_URL', ZOPIM_BASE_URL."plugins/getImSetupInfo");

@@ -10,6 +10,7 @@ function zopim_account_config() {
 
 <?php
 
+   $message = "";
    if ($_POST["action"]=="login") {
       if ($_POST["zopimUseSSL"] == "") {
          $_POST["zopimUseSSL"] = "nossl";
@@ -63,9 +64,9 @@ function zopim_account_config() {
 
       $signupresult = json_to_array(do_post_request(ZOPIM_SIGNUP_URL, $createdata));
       if (isset($signupresult->error)) {
-         echo "There was an error with the signup proces: <b>".$signupresult->error."</b>. Please try again.";
+         $message = "There was an error with the signup proces: <b>".$signupresult->error."</b>. Please try again.";
       } else {
-         echo "Thank you for signing up. Please check your mail for your password to complete the process.";
+         $message = "<b>Thank you for signing up. Please check your mail for your password to complete the process. </b>";
       }
    }
 
@@ -92,8 +93,10 @@ Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?>
 
 <?php } else { ?>
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
+<?php if ($message == "") { ?>
 Congratulations on successfully installing the Zopim WordPress plugin!<br/>
-<?php }
+<?php } else { echo $message; } 
+}
 ?>
 
 <br>

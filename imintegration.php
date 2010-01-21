@@ -87,7 +87,7 @@ You can <a href="admin.php?page=zopim_instant_messaging&remove=1">disable IM int
 <?php } else { // could not contact zopim to get the IM status ?> 
 
 <h3>Could not obtain integration information</h3>
-   Error: Could not contact the Zopim server to obtain IM credentials. Please ensure that you have <a href="admin.php?page=zopim_account_config">set up your account</a> first.
+   Please ensure that you have <a href="admin.php?page=zopim_account_config">set up your account</a> first.
 
 <?php }
 

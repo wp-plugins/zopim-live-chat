@@ -1,7 +1,7 @@
 === Zopim ===
 Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget, comments
-Requires at least: 2.5
+Requires at least: 2.7
 Tested up to: 2.8.2
 Stable tag: 0.6
 
