@@ -20,7 +20,7 @@ define('ZOPIM_SIGNUP_URL', ZOPIM_BASE_URL."plugins/createTrialAccount");
 define('ZOPIM_THEMES_LIST', "http://zopim.com/assets/dashboard/themes/window/plugins-themes.txt");
 define('ZOPIM_COLORS_LIST', "http://zopim.com/assets/dashboard/themes/window/plugins-colors.txt");
 define('ZOPIM_LANGUAGES_URL', "http://translate.zopim.com/projects/zopim/");
-define('ZOPIM_DASHBOARD_URL', "http://dashboard.livechat.zopim.net/");
+define('ZOPIM_DASHBOARD_URL', "http://dashboard.zopim.com/");
 define('ZOPIM_SMALL_LOGO', "http://zopim.com/assets/branding/zopim.com/chatman/online.png");
 define('ZOPIM_IM_LOGOS', "http://www.zopim.com/static/images/im/");
 define('ZOPIM_THEMES_URL', "http://");
