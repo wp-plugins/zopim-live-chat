@@ -88,12 +88,17 @@ function zopim_account_config() {
    }
 
    if ($authenticated == "ok") {
+      if ($accountDetails->package_id=="trial") {
+         $accountDetails->package_id = "Free Lite Package + 14 Days Full-features";
+      } else {
+         $accountDetails->package_id .= " Package";
+      }
 ?>
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
 <br/>
 <div style="background:#FFFEEB;padding:25px;border:1px solid #eee;">
 <span style="float:right;"><a href="admin.php?page=zopim_account_config&action=deactivate">Deactivate</a></span>
-Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?> Package</div> 
+Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?></div> 
 <br><p><br>Your account is successfully set up. You may now <a href="admin.php?page=zopim_customize_widget">customize it</a>, <a href="admin.php?page=zopim_instant_messaging">set up IM integration</a>, or <a href="admin.php?page=zopim_dashboard">go to the dashboard</a> to begin chatting.
 </div>
 
