@@ -374,18 +374,9 @@ function generate_options($options, $current) {
 
 function get_languages() {
 
-   $languages = array();
-   $langfile = file_get_contents(ZOPIM_LANGUAGES_URL);
-   $pattern = '/<a lang="en" href="\.\.\/\.\.\/([^"]+)\/zopim\/" dir="ltr">(.*)<\/a>/';
-   preg_match_all($pattern, $langfile, $matches);
-   $languages["--"] = " - Auto Detect - ";
-   $languages["en"] = "English";
-   for ($i=0; $i<count($matches[1]); $i++) {
-      $languages[$matches[1][$i]] = $matches[2][$i];
-   }
-   ksort($languages);
+   $langjson = '{"--":" - Auto Detect - ","ar":"Arabic","bg":"Bulgarian","cs":"Czech","da":"Danish","de":"German","en":"English","es":"Spanish; Castilian","fa":"Persian","fo":"Faroese","fr":"French","he":"Hebrew","hr":"Croatian","id":"Indonesian","it":"Italian","ja":"Japanese","ko":"Korean","ms":"Malay","nb":"Norwegian Bokmal","nl":"Dutch; Flemish","pl":"Polish","pt":"Portuguese","ru":"Russian","sk":"Slovak","sl":"Slovenian","sv":"Swedish","th":"Thai","tr":"Turkish","ur":"Urdu","vi":"Vietnamese","zh_CN":"Chinese (China)"}hihi{"--":" - Auto Detect - ","ar":"Arabic","bg":"Bulgarian","cs":"Czech","da":"Danish","de":"German","en":"English","es":"Spanish; Castilian","fa":"Persian","fo":"Faroese","fr":"French","he":"Hebrew","hr":"Croatian","id":"Indonesian","it":"Italian","ja":"Japanese","ko":"Korean","ms":"Malay","nb":"Norwegian Bokmal","nl":"Dutch; Flemish","pl":"Polish","pt":"Portuguese","ru":"Russian","sk":"Slovak","sl":"Slovenian","sv":"Swedish","th":"Thai","tr":"Turkish","ur":"Urdu","vi":"Vietnamese","zh_CN":"Chinese (China)"}';
 
-   return $languages;
+   return json_to_array($langjson);
 }
 
 function update_checkbox($fieldname) {
