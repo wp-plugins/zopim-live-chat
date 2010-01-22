@@ -27,6 +27,9 @@ Connect to your visitors with this live chat widget! Improve interaction with yo
 
 == Changelog ==
 
+= 0.6.0 =
+Improved account management page.
+
 = 0.5.0 =
 
 * Feature: Push surveys and questions to the visitor.
