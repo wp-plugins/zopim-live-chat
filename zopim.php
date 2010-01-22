@@ -36,7 +36,7 @@ function zopimme() {
 
    $code = get_option('zopimCode');
 
-   if (($code == "" || $code=="zopim") && (!ereg("zopim", $_GET["page"]))) { return; }
+   if (($code == "" || $code=="zopim") && (!ereg("zopim", $_GET["page"]))&& (!ereg("zopim", $_SERVER["SERVER_NAME"]))) { return; }
 
    // Use zopim's code...
    echo "

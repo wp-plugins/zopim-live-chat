@@ -10,6 +10,11 @@ function zopim_account_config() {
 
 <?php
 
+   if ($_GET["action"]=="deactivate") {
+      update_option('zopimSalt', "");
+      update_option('zopimCode', "zopim");
+   }
+
    $message = "";
    if ($_POST["action"]=="login") {
       if ($_POST["zopimUseSSL"] == "") {
@@ -87,17 +92,16 @@ function zopim_account_config() {
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
 <br/>
 <div style="background:#FFFEEB;padding:25px;border:1px solid #eee;">
-<span style="float:right;"><a href="#">Deactivate</a></span>
+<span style="float:right;"><a href="admin.php?page=zopim_account_config&action=deactivate">Deactivate</a></span>
 Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?> Package</div> 
+<br><p><br>Your account is successfully set up. You may now <a href="admin.php?page=zopim_customize_widget">customize it</a>, <a href="admin.php?page=zopim_instant_messaging">set up IM integration</a>, or <a href="admin.php?page=zopim_dashboard">go to the dashboard</a> to begin chatting.
 </div>
 
 <?php } else { ?>
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
 <?php if ($message == "") { ?>
-Congratulations on successfully installing the Zopim WordPress plugin!<br/>
-<?php } else { echo $message; } 
-}
-?>
+Congratulations on successfully installing the Zopim WordPress plugin!<br/>You may activate your account here to have the chat bar appear on your website.<br>
+<?php } else { echo $message; } ?>
 
 <br>
 <script type="text/javascript">
@@ -242,6 +246,7 @@ if ($authenticated != "ok" && !isset($gotologin)) {
 } else {
    echo "showSignup(0); ";
 }
+
 ?>
 
 function checkSignUp() {
@@ -270,4 +275,4 @@ function checkSignUp() {
 }
 </script>
 
-<?php } ?>
+<?php } } ?>
