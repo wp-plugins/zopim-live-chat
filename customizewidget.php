@@ -8,6 +8,9 @@ function zopim_customize_widget() {
    $useremail = $current_user->data->user_email;
    $greetings = json_to_array(get_option('zopimGreetings'));
 
+   $message = "";
+
+
    if (count($_POST) > 0) {
       update_option('zopimLang', $_POST["zopimLang"]);
       update_option('zopimPosition', $_POST["zopimPosition"]);
@@ -28,20 +31,40 @@ function zopim_customize_widget() {
       update_option('zopimTheme', $_POST["zopimTheme"]);
       update_option('zopimBubbleTitle', stripslashes($_POST["zopimBubbleTitle"]));
       update_option('zopimBubbleText', stripslashes($_POST["zopimBubbleText"]));
+      $message = "<b>Changes saved!</b><br>";
    }
 
    zopimme();
 
-   $message = "Click 'Save Changes' when you're done. Happy customizing!";
 
    $accountDetails = getAccountDetails(get_option('zopimSalt'));
 
    if (get_option('zopimCode')=="zopim") {
 
-      $message = "Currently modifying in demo mode. Messages in this widget will go to Zopim staff. The widget will not appear on your site until you <a href='admin.php?page=zopim_account_config'>configure an account</a>.";
+    $message = '<div class="metabox-holder">
+	<div class="postbox">
+		<h3 class="hndle"><span>Customizing in Demo Mode</span></h3>
+		<div style="padding:10px;line-height:17px;">
+      Currently customizing in demo mode. Messages in this widget will go to Zopim staff. The chat widget will not appear on your site until you <a href="admin.php?page=zopim_account_config">activate / link up an account</a>. <br>
+		</div>
+	</div>	
+    </div>';
       $accountDetails->widget_customization_enabled = 1;
       $accountDetails->color_customization_enabled = 1;
+   } else if (isset($accountDetails->error)) {
+      $message = '
+    <div class="metabox-holder">
+	<div class="postbox">
+		<h3 class="hndle"><span>Account no longer linked!</span></h3>
+		<div style="padding:10px;line-height:17px;">
+      We could not connect to your Zopim account. As a result, this customization page is running in demo mode.<br> Please <a href="admin.php?page=zopim_account_config">check your password in account setup</a> and try again.
+		</div>
+	</div>	
+    </div>';
+   } else {
+      $message .= "Click 'Save Changes' when you're done. Happy customizing!";
    }
+
    // unset($accountDetails->widget_customization_enabled);
    // unset($accountDetails->color_customization_enabled);
 ?>
@@ -136,13 +159,15 @@ line-height:21px;
 	background-image:url(http://www.zopim.com/static/images/colorselectbg.gif);
 	cursor:pointer;
 }
+.sorry {
+  color:#c33;
+}
 </style>
 
 <div class="wrap">
 <div id="icon-themes" class="icon32"><br/></div><h2>Customize your widget</h2>
 
 <?php echo $message; ?>
-<br/><br/>
 <form method="post" action="admin.php?page=zopim_customize_widget">
 <div class="metabox-holder">
 	<div class="postbox">
@@ -194,14 +219,14 @@ line-height:21px;
 		<h3 class="hndle"><span>Color & Theme Settings</span></h3>
 		<div style="padding:10px;">
 		Settings reflect instantly on your preview widget. Try it out!<br/>
-    <table class="form-table">
+    <table class="form-table" style="width: 700px">
         <tr valign="top">
         <td colspan="2">
-        	<div style="display:inline-block;border:11px solid #888;background:#888">
         <input type="hidden" id="zopimColor" name="zopimColor" value="<?php echo get_option('zopimColor'); ?>">
 <?php
 
    if ($accountDetails->color_customization_enabled == 1) {
+    	echo "<div style='display:inline-block;border:11px solid #888;background:#888;color:#fee;'>";
       $colors = file_get_contents(ZOPIM_COLORS_LIST);
       $colors = explode("\n", $colors);
 
@@ -214,14 +239,14 @@ line-height:21px;
       }   
       echo "<br><a href=# style='color:#ff8' onclick=\"document.getElementById('zopimColor').value=''; updateWidget();\">Restore default color</a></div>";
    } else {
-      echo "Sorry, your plan does not allow for color customization. Please upgrade to enjoy choice of color!";
+      echo "<div class='sorry'>Sorry, your plan does not allow for color customization. Please upgrade to enjoy choice of color!</div>";
    }
 ?>
         </td>
         </tr>
         <tr valign="top">
         <th scope="row" class="sethead">Select A Theme</th>
-        <td>
+        <td style="width: 400px"><div align="left">
 <?php
 
    if ($accountDetails->widget_customization_enabled == 1) {
@@ -231,12 +256,12 @@ line-height:21px;
       ksort($themes); 
 
       echo generate_options($themes, get_option('zopimTheme'));
-      echo '</select>';
+      echo "</select> <a href='#' onclick='\$zopim.livechat.window.toggle();return false;'>View the Chat Panel</a> for changes";
    } else {
-      echo "Sorry, your plan does not allow for theme customization. Please upgrade to enjoy choice of themes!";
+      echo "<div class='sorry'>Sorry, your plan does not allow for theme customization. Please upgrade to enjoy choice of themes!</div>";
       echo '<input type=hidden value="" name="zopimTheme" id="zopimTheme">';
    }
-?> <a href="#" onclick="$_$.livechat.window.toggle();return false;">View the Chat Panel</a> for changes
+?> 
         </td>
         </tr>        
     </table>

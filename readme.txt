@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget, comments
 Requires at least: 2.7
 Tested up to: 2.8.2
-Stable tag: 0.6
+Stable tag: 0.6.1
 
 Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
 
@@ -26,6 +26,9 @@ Connect to your visitors with this live chat widget! Improve interaction with yo
 * Analytics: Live tracking of visitors' entry, locations, history, repeat visits, IP addresses, etc.
 
 == Changelog ==
+
+= 0.6.1 =
+* Plugin launched to public.
 
 = 0.6.0 =
 * UI fix: Improved account management page.
