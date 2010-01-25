@@ -13,7 +13,7 @@ Chat away with Zopim Live Chat! Zopim increases engagement between you and your 
 Great for improving interaction with your users and increasing the time they spend on your site. 
 
 **Why use Zopim?**
-* Setup happens in a flash! Easy installation and setup
+* Installation happens in a flash! 60 seconds setup!
 * Choose to reply to visitors via your favorite IM client or the high productivity Dashboard
 * Know exactly who enters your site! The name and email is automatically detected if he is a Wordpress user. 
 * Monitor visitors live as they surf, including their entry, location, history, current URL, repeat visitors etc
