@@ -9,16 +9,23 @@ Visitors can chat with you directly by clicking on the Zopim Chat Bar.
 
 == Description ==
 
-Chat away with Zopim Live Chat! Zopim increases engagement between you and your visitors, by allowing them to chat with you!
+Chat away with Zopim Live Chat! Zopim increases engagement between you and your visitors, by allowing them to chat with you! 
 Great for improving interaction with your users and increasing the time they spend on your site. 
 
 **Why use Zopim?**
+
 * Installation happens in a flash! 60 seconds setup!
+
 * Choose to reply to visitors via your favorite IM client or the high productivity Dashboard
+
 * Know exactly who enters your site! The name and email is automatically detected if he is a Wordpress user. 
+
 * Monitor visitors live as they surf, including their entry, location, history, current URL, repeat visitors etc
+
 * Customize widget look and feel: themes, colours, positions, greeting message.
+
 * Localise the widget to the language you want: English, Hebrew, Persian, Polish, Indonesian, Swedish, Bulgarian, Czech, Slovenian, Russian, Danish, Chinese, Croation, Thai, French, Dutch, Turkish, German, Faroese, Korean, Japanese.
+
 * Access a high productivity Dashboard: with saved chat history, templated messages, visitor prioritization, Q & A, smart responder
 
 == Changelog ==
