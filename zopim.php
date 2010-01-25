@@ -116,13 +116,13 @@ function zopim_create_menu() {
 }
 
 function check_zopimCode() {
-
+/*
 //   if (get_option('zopimCode') == '' && ($_GET["page"] != "zopim_account_config")) {
-     if (ereg("zopim", $_GET["page"] )) {
+   if (ereg("zopim", $_GET["page"] )) {
       //add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>" . sprintf( "Please <a href=\"%s\">input your Zopim account details</a>.", "admin.php?page=zopim_account_config" ) . "</p></div>";' ) );
       add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>This Zopim plugin is a work in progress. We will launch on the 25th of January. Thank you for your interest.</p></div>";' ) );
    }
-
+ */
    return false;
 }
 
