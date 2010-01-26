@@ -1,9 +1,9 @@
-=== Zopim ===
+=== Zopim Live Chat! ===
 Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 2.8.2
-Stable tag: 0.7
+Stable tag: 0.6.1
 
 Visitors can chat with you directly by clicking on the Zopim Chat Bar. 
 
@@ -29,6 +29,9 @@ Great for improving interaction with your users and increasing the time they spe
 * Access a high productivity Dashboard: with saved chat history, templated messages, visitor prioritization, Q & A, smart responder
 
 == Changelog ==
+
+= 1.0 =
+* Stability update: Official Plugin Launched
 
 = 0.6.1 =
 * Update: Launched with improved signup process and minor cosmetic fixes.
@@ -89,7 +92,7 @@ The plugin comes with a free plan specially tailored for Wordpress users. Power 
 
 = Its just not working for me! HELP! =
 
-Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com and we will help you with installation. 
+Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com or leave an email for us at support@zopim.com and we will help you with installation. 
 
 == Usage ==
 
