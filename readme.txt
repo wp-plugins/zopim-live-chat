@@ -1,15 +1,15 @@
 === Zopim ===
 Contributors: bencxr
-Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget, comments
+Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 2.8.2
-Stable tag: 0.6
+Stable tag: 0.6.1
 
 Visitors can chat with you directly by clicking on the Zopim Chat Bar. 
 
 == Description ==
 
-Chat away with Zopim Live Chat! Zopim increases engagement between you and your visitors, by allowing them to chat with you! 
+What if your website could talk? Zopim increases engagement between you and your visitors, by allowing them to chat with you! 
 Great for improving interaction with your users and increasing the time they spend on your site. 
 
 **Why use Zopim?**
