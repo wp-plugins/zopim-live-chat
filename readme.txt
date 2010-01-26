@@ -1,31 +1,37 @@
 === Zopim ===
 Contributors: bencxr
-Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget, comments
+Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 2.8.2
-Stable tag: 0.6
+Stable tag: 0.7
 
-Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
+Visitors can chat with you directly by clicking on the Zopim Chat Bar. 
 
 == Description ==
 
-Work in progress: To be launched on 25th January, 2010.
+What if your website could talk? Zopim increases engagement between you and your visitors, by allowing them to chat with you! 
+Great for improving interaction with your users and increasing the time they spend on your site. 
 
-Connect to your visitors with this live chat widget! Improve interaction with your users and increase the time they spend on your site. Great for online service and support. 
+**Why use Zopim?**
 
-**Features:**
+* Installation happens in a flash - 60 seconds setup!
 
-* Improve your visitor experience by letting them talk to you! 
-* Use your IM client or the dashboard (integrated in the plugin) to interact with users.
-* No server set up required, just configure the plugin and go!
-* Customize widget look and feel: themes, colours, positions and more.
-* Customize message settings: Online, away and offline statuses, welcome messages and more.
-* Utilize wordpress user information to populate visitor fields.
-* Multi-language support: Choose from a wide range of languages including English, Hebrew, Persian, Polish, Indonesian, Swedish, Bulgarian, Czech, Slovenian, Russian, Danish, Chinese, Croation, Thai, French, Dutch, Turkish, German, Faroese, Korean, Japanese.
-* High productivity dashboard: Saved templated messages, Q & A, smart responder, visitor prioritization.
-* Analytics: Live tracking of visitors' entry, locations, history, repeat visits, IP addresses, etc.
+* Choose to reply to visitors via your favorite IM client or the high productivity Dashboard
+
+* Know exactly who enters your site! The name and email is automatically detected if he is a Wordpress user. 
+
+* Monitor visitors live as they surf, including their entry, location, history, current URL, repeat visitors etc
+
+* Customize widget look and feel: themes, colours, positions, greeting message.
+
+* Localise the widget to the language you want: English, Hebrew, Persian, Polish, Indonesian, Swedish, Bulgarian, Czech, Slovenian, Russian, Danish, Chinese, Croation, Thai, French, Dutch, Turkish, German, Faroese, Korean, Japanese.
+
+* Access a high productivity Dashboard: with saved chat history, templated messages, visitor prioritization, Q & A, smart responder
 
 == Changelog ==
+
+= 0.6.1 =
+* Update: Launched with improved signup process and minor cosmetic fixes.
 
 = 0.6.0 =
 * UI fix: Improved account management page.

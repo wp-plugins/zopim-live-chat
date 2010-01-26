@@ -63,15 +63,17 @@ function zopim_account_config() {
          "last_name" => $_POST["zopimlastname"], 
          "display_name" => $_POST["zopimfirstname"]." ".$_POST["zopimlastname"],
          "eref" => $_POST["zopimeref"],
+         "source" => "wordpress",
          "recaptcha_challenge_field" => $_POST["recaptcha_challenge_field"],
          "recaptcha_response_field" => $_POST["recaptcha_response_field"]
       );
 
       $signupresult = json_to_array(do_post_request(ZOPIM_SIGNUP_URL, $createdata));
       if (isset($signupresult->error)) {
-         $message = "There was an error with the signup proces: <b>".$signupresult->error."</b>. Please try again.";
+         $message = "<div style='color:#c33;'>Error during activation: <b>".$signupresult->error."</b>. Please try again.</div>";
       } else {
          $message = "<b>Thank you for signing up. Please check your mail for your password to complete the process. </b>";
+         $gotologin = 1;
       }
    }
 
@@ -80,8 +82,17 @@ function zopim_account_config() {
       $accountDetails = getAccountDetails(get_option('zopimSalt'));
 
       if (!isset($accountDetails) || isset($accountDetails->error)) {
-         $error["auth"] = $accountDetails->error;
          $gotologin = 1;
+         $error["auth"] = '
+    <div class="metabox-holder">
+	<div class="postbox">
+		<h3 class="hndle"><span>Account no longer linked!</span></h3>
+		<div style="padding:10px;line-height:17px;">
+      We could not verify your Zopim account. Please check your password and try again.
+		</div>
+	</div>	
+    </div>'
+;
       } else {
          $authenticated = "ok";
       }
@@ -99,16 +110,18 @@ function zopim_account_config() {
 <div style="background:#FFFEEB;padding:25px;border:1px solid #eee;">
 <span style="float:right;"><a href="admin.php?page=zopim_account_config&action=deactivate">Deactivate</a></span>
 Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?></div> 
-<br><p><br>Your account is successfully set up. You may now <a href="admin.php?page=zopim_customize_widget">customize it</a>, <a href="admin.php?page=zopim_instant_messaging">set up IM integration</a>, or <a href="admin.php?page=zopim_dashboard">go to the dashboard</a> to begin chatting.
+<br><p><br>You can <a href="admin.php?page=zopim_customize_widget">customize</a> the chat widget, <a href="admin.php?page=zopim_instant_messaging">relay messages</a> to your favourite IM client, or <a href="admin.php?page=zopim_dashboard">launch the dashboard</a> for advanced features.
 </div>
 
 <?php } else { ?>
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
-<?php if ($message == "") { ?>
-Congratulations on successfully installing the Zopim WordPress plugin!<br/>You may activate your account here to have the chat bar appear on your website.<br>
+<?php if ($error && $error["auth"]) {
+   echo $error["auth"];
+   } else if ($message == "") { ?>
+Congratulations on successfully installing the Zopim WordPress plugin! Activate an account to start using Zopim Live Chat.<br>
+<br>
 <?php } else { echo $message; } ?>
 
-<br>
 <script type="text/javascript">
 
 function showSignup(whichform) {
@@ -157,7 +170,7 @@ function showSignup(whichform) {
         <td><input type="password" name="zopimPassword" value="<?php if (get_option('zopimSalt') != "") { echo "password"; }; ?>" /></td>
         </tr>
 
-         <tr valign="center">
+        <tr valign="center">
         <th scope="row">Use SSL</th>
         <td><input type="checkbox" name="zopimUseSSL" value="zopimUseSSL" <?php if (get_option('zopimUseSSL') == "zopimUseSSL") { echo "checked='checked'"; } ?> /> uncheck this if you are unable to login</td>
         </tr>
@@ -246,7 +259,7 @@ function showSignup(whichform) {
         
 <script type="text/javascript">
 <?php 
-if ($authenticated != "ok" && !isset($gotologin)) {
+if ($authenticated != "ok" && !isset($gotologin) && get_option("zopimCode")=="zopim") {
    echo "showSignup(1); ";
 } else {
    echo "showSignup(0); ";
