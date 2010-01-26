@@ -1,4 +1,4 @@
-=== Zopim Live Chat! ===
+=== Zopim Live Chat ===
 Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
