@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.org
 Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
 Author: Isidore
-Version: 1.0.1
+Version: 1.0
 Author URI: http://www.isidorechan.com/
  */
 
@@ -40,9 +40,12 @@ function zopimme() {
 
    // Use zopim's code...
    echo "
+<!-- Start of Zopim Live Chat Script -->
    <script type=\"text/javascript\">
 document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//".ZOPIM_SCRIPT_DOMAIN."/?".$code."' charset='utf-8' type='text/javascript'%3E%3C/script%3E\"));
-      </script>";
+      </script>
+<!-- End of Zopim Live Chat Script -->
+";
 
    $theoptions = array();
    if (get_option('zopimLang') != "" && get_option('zopimLang') != "--") {

@@ -167,7 +167,7 @@ function showSignup(whichform) {
         </tr>
 
         <tr valign="top">
-        <th scope="row">Zopim Pasword</th>
+        <th scope="row">Zopim Password</th>
         <td><input type="password" name="zopimPassword" value="<?php if (get_option('zopimSalt') != "") { echo "password"; }; ?>" /></td>
         </tr>
 
