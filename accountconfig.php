@@ -31,13 +31,9 @@ function zopim_account_config() {
             $error["login"] = "<b>Could not log in to Zopim. Please check your login details. If problem persists, try connecting without SSL enabled.</b>";
             $gotologin = 1;
             update_option('zopimSalt', "wronglogin");
-         } else {
+         } else if (isset($loginresult->salt)) {
             update_option('zopimUsername', $_POST["zopimUsername"]);
-            if (isset($loginresult->salt)) {
-               update_option('zopimSalt', $loginresult->salt);
-            } else {
-               update_option('zopimSalt', "");
-            }
+            update_option('zopimSalt', $loginresult->salt);
             $account = getAccountDetails(get_option('zopimSalt'));
 
             if (isset($account)) {
@@ -48,6 +44,9 @@ function zopim_account_config() {
                   update_option('zopimGreetings', $jsongreetings);
                }
             }
+         } else {
+            update_option('zopimSalt', "");
+            $error["login"] = "<b>Could not log in to Zopim. We were unable to contact Zopim servers. Please check with your server administrator to ensure that <a href='http://www.php.net/manual/en/book.curl.php'>PHP Curl</a> is installed and permissions are set correctly.</b>";
          }
       }
    } else if ($_POST["action"]=="signup") {
@@ -71,9 +70,11 @@ function zopim_account_config() {
       $signupresult = json_to_array(do_post_request(ZOPIM_SIGNUP_URL, $createdata));
       if (isset($signupresult->error)) {
          $message = "<div style='color:#c33;'>Error during activation: <b>".$signupresult->error."</b>. Please try again.</div>";
-      } else {
+      } else if (isset($signupresult->account_key)) {
          $message = "<b>Thank you for signing up. Please check your mail for your password to complete the process. </b>";
          $gotologin = 1;
+      } else {
+         $message = "<b>Could not activate account. The wordpress installation was unable to contact Zopim servers. Please check with your server administrator to ensure that <a href='http://www.php.net/manual/en/book.curl.php'>PHP Curl</a> is installed and permissions are set correctly.</b>";
       }
    }
 

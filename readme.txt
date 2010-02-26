@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 2.8.2
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 Visitors can chat with you directly by clicking on the Zopim Chat Bar. 
 
@@ -29,6 +29,10 @@ Great for improving interaction with your users and increasing the time they spe
 * Access a high productivity Dashboard: with saved chat history, templated messages, visitor prioritization, Q & A, smart responder
 
 == Changelog ==
+
+= 1.0.1 =
+* Maintenance update: More robust connectivity, CURL errors caught
+* Note: PHP Curl is required (and has always been).
 
 = 1.0 =
 * Stability update: Official Plugin Launched
@@ -86,13 +90,18 @@ Not at all! Zopim is a hosted livechat service. Simply configure the plugin and 
 
 Though designed to work on most browsers, Zopim works best in the following environment: IE 6 or later (PC), Firefox 2 or later (Mac, PC, or Linux), Safari 2 or later (Mac), Google Chrome (PC, Mac).
 
+= I managed to install the plugin but cannot link up to Zopim. Why? =
+Most likely PHP Curl is not installed or configured properly. Please request your server administrator to enable the PHP CURL extension (see http://www.php.net/manual/en/book.curl.php for details). 
+
+Alternatively, you can also manually include the script in the footer file ("wp-content/themes/default/footer.php" in your wordpress installation). 
+
 = Is it free to use? =
 
 The plugin comes with a free plan specially tailored for Wordpress users. Power users can purchase upgrade options anytime. 
 
 = Its just not working for me! HELP! =
 
-Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com or leave an email for us at support@zopim.com and we will help you with installation. 
+Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com or leave an email for us at wordpress@zopim.com and we will help you with installation. 
 
 == Usage ==
 
@@ -100,5 +109,5 @@ After enabling the plug in, head on to the widget customization page to change s
 
 == Installation ==
 
-*Server Requirements:* PHP4 or PHP5.
-
+*Server Requirements:* PHP4 or PHP5 with PHP Curl installed. 
+*Wordpress versions:* Wordpress 2.7 and up.

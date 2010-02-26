@@ -227,7 +227,7 @@ line-height:21px;
 
    if ($accountDetails->color_customization_enabled == 1) {
     	echo "<div style='display:inline-block;border:11px solid #888;background:#888;color:#fee;'>";
-      $colors = file_get_contents(ZOPIM_COLORS_LIST);
+      $colors = curl_get_url(ZOPIM_COLORS_LIST);
       $colors = explode("\n", $colors);
 
       $i=0;
@@ -251,7 +251,7 @@ line-height:21px;
 
    if ($accountDetails->widget_customization_enabled == 1) {
       echo '<select name="zopimTheme" id="zopimTheme" onchange="updateWidget()">';
-      $themes = file_get_contents(ZOPIM_THEMES_LIST);
+      $themes = curl_get_url(ZOPIM_THEMES_LIST);
       $themes = valuekeys(explode("\n", $themes));
       ksort($themes); 
 
