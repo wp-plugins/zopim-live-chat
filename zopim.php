@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.org
 Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
 Author: Isidore
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://www.isidorechan.com/
  */
 
@@ -40,7 +40,7 @@ function zopimme() {
 
    // Use zopim's code...
    echo "
-<!-- Start of Zopim Live Chat Script -->
+   <!-- Start of Zopim Live Chat Script -->
    <script type=\"text/javascript\">
 document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//".ZOPIM_SCRIPT_DOMAIN."/?".$code."' charset='utf-8' type='text/javascript'%3E%3C/script%3E\"));
       </script>
@@ -51,7 +51,7 @@ document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//"
    if (get_option('zopimLang') != "" && get_option('zopimLang') != "--") {
       $theoptions[] = " language: '".get_option('zopimLang')."'";
    }
-   
+
 
    if ( isset($current_user) && get_option("zopimGetVisitorInfo") == "checked" )
    {
@@ -96,10 +96,10 @@ document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//"
    if (get_option('zopimGreetings') != "") {
       $greetings = json_to_array(get_option('zopimGreetings'));
       echo "\n\$zopim.livechat.setGreetings({
-            'online': ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
+         'online': ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
             'offline': ['".addslashes($greetings->offline->bar)."', '".addslashes($greetings->offline->window)."'],
             'away': ['".addslashes($greetings->away->bar)."', '".addslashes($greetings->away->window)."']  });
-   ";
+         ";
    }
    echo "</script>";
 }
@@ -108,7 +108,7 @@ function zopim_create_menu() {
 
    //create new top-level menu
    add_menu_page('Account Configuration', 'Zopim Chat', 'administrator', 'zopim_account_config', 'zopim_account_config', ZOPIM_SMALL_LOGO);
-// add_submenu_page('zopim_about', "About", "About", "administrator", 'zopim_about', 'zopim_about');
+   // add_submenu_page('zopim_about', "About", "About", "administrator", 'zopim_about', 'zopim_about');
    add_submenu_page('zopim_account_config', 'Account Configuration', 'Account Setup', 'administrator', 'zopim_account_config', 'zopim_account_config');
    add_submenu_page('zopim_account_config', 'Customize Widget', 'Customize', 'administrator', 'zopim_customize_widget', 'zopim_customize_widget');
    add_submenu_page('zopim_account_config', 'IM Integration', 'IM Chat Bots', 'administrator', 'zopim_instant_messaging', 'zopim_instant_messaging');
@@ -120,7 +120,7 @@ function zopim_create_menu() {
 
 function check_zopimCode() {
 /*
-//   if (get_option('zopimCode') == '' && ($_GET["page"] != "zopim_account_config")) {
+   //   if (get_option('zopimCode') == '' && ($_GET["page"] != "zopim_account_config")) {
    if (ereg("zopim", $_GET["page"] )) {
       //add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>" . sprintf( "Please <a href=\"%s\">input your Zopim account details</a>.", "admin.php?page=zopim_account_config" ) . "</p></div>";' ) );
       add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>This Zopim plugin is a work in progress. We will launch on the 25th of January. Thank you for your interest.</p></div>";' ) );
@@ -144,7 +144,7 @@ function zopim_about() {
 function zopim_dashboard() {
 
    echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'" height=700 width=98% scrolling="no"></iframe></div>      You may also <a href="'.ZOPIM_DASHBOARD_URL.'" target="_newWindow" onClick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.
-   ';
+      ';
 }
 
 // Register the option settings we will be using
@@ -199,9 +199,8 @@ add_action('admin_menu', 'zopim_create_menu');
 
 function do_post_request($url, $_data, $optional_headers = null)
 {
-   $gadURL = ZOPIM_GETACCOUNTDETAILS_URL;
    if (get_option('zopimUseSSL') != "zopimUseSSL") {
-      $gadURL = str_replace("https", "http", $gadURL);
+      $url = str_replace("https", "http", $url);
    }
 
    $data = array();    
@@ -211,23 +210,16 @@ function do_post_request($url, $_data, $optional_headers = null)
    }    
 
    $data = implode('&', $data);
-   $params = array('http' => array(
-      'method' => 'POST',
-      'content' => $data
-   ));
-   if ($optional_headers !== null) {
-      $params['http']['header'] = $optional_headers;
-   }
-   $ctx = stream_context_create($params);
-   $fp = @fopen($url, 'rb', false, $ctx);
 
-   if (!$fp) {
-//      echo ("Problem with $url, $php_errormsg");
-   }
-   $response = @stream_get_contents($fp);
-   if ($response === false) {
-//      echo("Problem reading data from $url, $php_errormsg");
-   }
+   $ch = curl_init();
+
+   curl_setopt($ch, CURLOPT_URL, $url);
+   curl_setopt($ch, CURLOPT_POST, true);
+   curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+   $response = curl_exec($ch);
+   curl_close($ch);
 
    return $response;
 }
@@ -246,7 +238,7 @@ function to_json($variable) {
 
    // json_decode does exist but only in php > 5.2.0
    require_once('JSON.php');
-   
+
    $jsonparser = new Services_JSON();
 
    return ($jsonparser->encode($variable));

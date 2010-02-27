@@ -30,6 +30,9 @@ Great for improving interaction with your users and increasing the time they spe
 
 == Changelog ==
 
+= 1.0.2 =
+* Maintenance update: More curl robustness enhancements.
+
 = 1.0.1 =
 * Maintenance update: More robust connectivity, CURL errors caught
 * Note: PHP Curl is required (and has always been).
