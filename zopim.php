@@ -203,16 +203,13 @@ function do_post_request($url, $_data, $optional_headers = null)
       $url = str_replace("https", "http", $url);
    }
 
-   $data = array();    
-
+   $data = array();
    while(list($n,$v) = each($_data)){
       $data[] = urlencode($n)."=".urlencode($v);
    }    
 
    $data = implode('&', $data);
-
    $ch = curl_init();
-
    curl_setopt($ch, CURLOPT_URL, $url);
    curl_setopt($ch, CURLOPT_POST, true);
    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
