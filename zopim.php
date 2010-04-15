@@ -95,6 +95,11 @@ document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//"
    }
    if (get_option('zopimGreetings') != "") {
       $greetings = json_to_array(get_option('zopimGreetings'));
+      foreach ($greetings as $i => $v) {
+	 foreach ($v as $j => $k) {
+           $greetings->$i->$j = str_replace("\r\n", "\\n", $greetings->$i->$j);
+      	}
+      }
       echo "\n\$zopim.livechat.setGreetings({
          'online': ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
             'offline': ['".addslashes($greetings->offline->bar)."', '".addslashes($greetings->offline->window)."'],

@@ -8,12 +8,6 @@ function zopim_customize_widget() {
    $useremail = $current_user->data->user_email;
    $greetings = json_to_array(get_option('zopimGreetings'));
 
-   foreach ($greetings as $i => $v) {
-      foreach ($v as $j => $k) {
-         $greetings->$i->$j = str_replace("\r\n", "\\n", $greetings->$i->$j);
-      }
-   }
-
    $message = "";
 
 
