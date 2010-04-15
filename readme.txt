@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 2.9.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 Visitors can chat with you directly by clicking on the Zopim Chat Bar. 
 
@@ -29,6 +29,9 @@ Great for improving interaction with your users and increasing the time they spe
 * Access a high productivity Dashboard: with saved chat history, templated messages, visitor prioritization, Q & A, smart responder
 
 == Changelog ==
+
+= 1.0.3 =
+* Maintenance update: New line bugfixes.
 
 = 1.0.2 =
 * Maintenance update: More curl robustness enhancements.
