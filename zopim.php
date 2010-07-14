@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.org
 Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
 Author: Isidore
-Version: 1.0.3
+Version: 1.0.4
 Author URI: http://www.isidorechan.com/
  */
 
@@ -32,11 +32,15 @@ require_once dirname( __FILE__ ) . '/imintegration.php';
 
 // We need some CSS to position the paragraph
 function zopimme() {
-   global $current_user;
+   global $current_user, $zopimshown;
 
    $code = get_option('zopimCode');
 
    if (($code == "" || $code=="zopim") && (!ereg("zopim", $_GET["page"]))&& (!ereg("zopim", $_SERVER["SERVER_NAME"]))) { return; }
+
+   // dont show this more than once
+   if (isset($zopimshown) && $zopimshown == 1) { return; }
+   $zopimshown = 1;
 
    // Use zopim's code...
    echo "
