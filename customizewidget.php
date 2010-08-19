@@ -313,7 +313,7 @@ line-height:21px;
         <tr valign="top">
         <th scope="row" class="sethead">Online</th>
         <td>
-        <input class="inputtextshort" name="zopimOnlineShort" id="zopimOnlineShort" onKeyup="updateSoon)" value="<?php echo $greetings->online->bar; ?>">
+        <input class="inputtextshort" name="zopimOnlineShort" id="zopimOnlineShort" onKeyup="updateSoon()" value="<?php echo $greetings->online->bar; ?>">
         </td>
         </tr>
 
