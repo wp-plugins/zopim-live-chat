@@ -1,5 +1,5 @@
 <?php
-if(!class.exists('Services_JSON')):
+if(!class_exists('Services_JSON')):
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -805,4 +805,3 @@ if (class_exists('PEAR_Error')) {
 }
 endif;
 ?>
-
