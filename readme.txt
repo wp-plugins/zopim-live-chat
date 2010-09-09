@@ -30,7 +30,7 @@ Great for improving interaction with your users and increasing the time they spe
 
 == Changelog ==
 = 1.0.6 =
-*Maintenance update: Class redeclaration conflict fix.
+* Maintenance update: Class' redeclaration conflict fix.
 
 = 1.0.5 =
 * Maintenance update: fix minor bug on widget customization page - online msg input
