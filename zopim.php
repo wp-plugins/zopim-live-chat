@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.org
 Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
 Author: Isidore
-Version: 1.0.6
+Version: 1.0.7
 Author URI: http://www.isidorechan.com/
  */
 
@@ -91,24 +91,30 @@ document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//"
    if (get_option('zopimBubbleText') != "") {
       echo "\n\$zopim.livechat.bubble.setText('".addslashes(get_option('zopimBubbleText'))."');";
    }
-   if (get_option('zopimHideOnOffline') == "checked") {
-      echo "\n\$zopim.livechat.button.setHideWhenOffline(true);";
-   }
-   if (get_option('zopimBubbleEnable') == "checked") {
+   if (get_option('zopimBubbleEnable') == "show") {
       echo "\n\$zopim.livechat.bubble.show(true);";
-   }
-   if (get_option('zopimGreetings') != "") {
-      $greetings = json_to_array(get_option('zopimGreetings'));
-      foreach ($greetings as $i => $v) {
-	 foreach ($v as $j => $k) {
-           $greetings->$i->$j = str_replace("\r\n", "\\n", $greetings->$i->$j);
-      	}
-      }
-      echo "\n\$zopim.livechat.setGreetings({
-         'online': ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
-            'offline': ['".addslashes($greetings->offline->bar)."', '".addslashes($greetings->offline->window)."'],
-            'away': ['".addslashes($greetings->away->bar)."', '".addslashes($greetings->away->window)."']  });
-         ";
+   } elseif (get_option('zopimBubbleEnable') == "hide") {
+			echo "\n\$zopim.livechat.bubble.hide(true);";
+	 }
+
+	 if (get_option('zopimUseGreetings') == "zopimUseGreetings") {
+		 if (get_option('zopimGreetings') != "") {
+				$greetings = json_to_array(get_option('zopimGreetings'));
+				foreach ($greetings as $i => $v) {
+		 foreach ($v as $j => $k) {
+						 $greetings->$i->$j = str_replace("\r\n", "\\n", $greetings->$i->$j);
+					}
+				}
+				echo "\n\$zopim.livechat.setGreetings({
+					 'online': ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
+							'offline': ['".addslashes($greetings->offline->bar)."', '".addslashes($greetings->offline->window)."'],
+							'away': ['".addslashes($greetings->away->bar)."', '".addslashes($greetings->away->window)."']  });
+					 ";
+		 }
+	 }
+		// this need to be called last
+   if (get_option('zopimHideOnOffline') == "zopimHideOnOffline") {
+      echo "\n\$zopim.livechat.button.setHideWhenOffline(true);";
    }
    echo "</script>";
 }

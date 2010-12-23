@@ -14,23 +14,27 @@ function zopim_customize_widget() {
    if (count($_POST) > 0) {
       update_option('zopimLang', $_POST["zopimLang"]);
       update_option('zopimPosition', $_POST["zopimPosition"]);
-
-      update_checkbox("zopimGetVisitorInfo");
-      update_checkbox("zopimHideOnOffline");
-      update_checkbox("zopimBubbleEnable");
-
-      $greetings->online->window = stripslashes($_POST["zopimOnlineLong"]);
-      $greetings->online->bar = stripslashes($_POST["zopimOnlineShort"]);
-      $greetings->away->window = stripslashes($_POST["zopimAwayLong"]);
-      $greetings->away->bar = stripslashes($_POST["zopimAwayShort"]);
-      $greetings->offline->window = stripslashes($_POST["zopimOfflineLong"]);
-      $greetings->offline->bar = stripslashes($_POST["zopimOfflineShort"]);
-
-      update_option('zopimGreetings', to_json($greetings));
+      update_option("zopimBubbleEnable", $_POST["zopimBubbleEnable"] );
       update_option('zopimColor', $_POST["zopimColor"]);
       update_option('zopimTheme', $_POST["zopimTheme"]);
       update_option('zopimBubbleTitle', stripslashes($_POST["zopimBubbleTitle"]));
       update_option('zopimBubbleText', stripslashes($_POST["zopimBubbleText"]));
+
+      update_checkbox("zopimGetVisitorInfo");
+      update_checkbox("zopimHideOnOffline");
+			update_checkbox("zopimUseGreetings");
+
+			if ( isset($_POST['zopimUseGreetings']) && $_POST['zopimUseGreetings'] != "") {
+				$greetings->online->window = stripslashes($_POST["zopimOnlineLong"]);
+				$greetings->online->bar = stripslashes($_POST["zopimOnlineShort"]);
+				$greetings->away->window = stripslashes($_POST["zopimAwayLong"]);
+				$greetings->away->bar = stripslashes($_POST["zopimAwayShort"]);
+				$greetings->offline->window = stripslashes($_POST["zopimOfflineLong"]);
+				$greetings->offline->bar = stripslashes($_POST["zopimOfflineShort"]);
+
+				update_option('zopimGreetings', to_json($greetings));
+			}
+
       $message = "<b>Changes saved!</b><br>";
    }
 
@@ -110,13 +114,35 @@ function zopim_customize_widget() {
    }
 
    function updateBubbleStatus() {
-      if (document.getElementById("zopimBubbleEnable").checked) {
-         $zopim.livechat.bubble.show();
-         $zopim.livechat.bubble.reset();
-      } else {
-         $zopim.livechat.bubble.hide();
-      }
+			var value = document.getElementById("zopimBubbleEnable").value;
+			switch (value) {
+				case 'default':
+					$zopim.livechat.bubble.reset();
+					break;
+				case 'show':
+					$zopim.livechat.bubble.show();
+					break;
+				case 'hide':
+					$zopim.livechat.bubble.hide();
+					break;
+			}
    }
+		
+	function greetingsChanged() {
+    var inputs = ['zopimOnlineShort', 'zopimAwayShort', 'zopimOfflineShort',
+                  'zopimOnlineLong' , 'zopimAwayLong', 'zopimOfflineLong'];
+    var isDisabled = false;
+
+    if (document.getElementById('zopimUseGreetings').checked) 
+			isDisabled = false;
+    else 
+			isDisabled = true;
+
+    for (var i=0; i<inputs.length; i++) {
+        var el = document.getElementById(inputs[i]);
+        el.disabled = isDisabled;
+    }
+	}
 
    var timer;
    function updateSoon() {
@@ -197,7 +223,7 @@ line-height:21px;
 
         <select name="zopimPosition" id="zopimPosition" onchange="updatePosition()">
 <?php 
-   $positions = array("br" => "Bottom Right", "bl" => "Bottom Left", "mr" => "Right", "ml" => "Left");
+   $positions = array("br" => "Bottom Right", "bl" => "Bottom Left");
    echo generate_options($positions, get_option('zopimPosition'));
 ?>
         </select>
@@ -208,7 +234,10 @@ line-height:21px;
         <th scope="row">Hide chat bar when offline<br>
         <!-- <div class="smallExplanation">Hide the chat bar when no agents are available to answer questions. This prevents visitors from sending you offline messages. </div>  -->
         </th>
-        <td><input onchange="updateWidget()" type="checkbox" id="zopimHideOnOffline" name="zopimHideOnOffline" value="zopimHideOnOffline" <?php if (get_option('zopimHideOnOffline') && get_option('zopimHideOnOffline')!="disabled") { echo "checked='checked'"; } ?> /> This prevents visitors from sending you offline messages</td>
+        	<td>
+						<input onchange="updateWidget()" type="checkbox" id="zopimHideOnOffline" name="zopimHideOnOffline" value="zopimHideOnOffline" <?php if (get_option('zopimHideOnOffline') && get_option('zopimHideOnOffline')!="disabled") { echo "checked='checked'"; } ?> /> This prevents visitors from sending you offline messages - 
+						<a href="#" onclick="$zopim.livechat.button.show();return false">force show chat button</a>
+					</td>
         </tr>
     </table>
 		</div>
@@ -278,7 +307,13 @@ line-height:21px;
         <tr valign="top">
         <th scope="row">Display Help Bubble<br>        
         </th>
-        <td><input onchange="updateBubbleStatus()" type="checkbox" id="zopimBubbleEnable" name="zopimBubbleEnable" value="zopimBubbleEnable" <?php if (get_option('zopimBubbleEnable')!="disabled") { echo "checked='checked'"; } ?> /> Use this pretty chat bubble to grab attention!</td>
+        <td>
+					<select onchange="updateBubbleStatus()" type="checkbox" id="zopimBubbleEnable" name="zopimBubbleEnable">
+						<?php
+						   $bubble_modes = array("default" => "Let user decide", "show" => "Always show", "hide" => "Always hide");
+						   echo generate_options($bubble_modes, get_option('zopimBubbleEnable'));
+						?>
+					</select>
         </tr>
        <tr valign="top">
         <th scope="row" class="sethead">Help Bubble Title
@@ -304,53 +339,70 @@ line-height:21px;
 	</div>	
 </div>
 
+<?php 
+	if (get_option("zopimUseGreetings") && get_option("zopimUseGreetings"!="disabled")) {
+		$useGreetings = true;
+  }	else {
+		$useGreetings = false;
+	}
+?>
 <div class="metabox-holder">
 	<div class="postbox">
 		<h3 class="hndle"><span>Greeting Message Settings</span></h3>
 		<div style="padding:10px;">
     <table class="form-table">
-    	<tr><td colspan="2"><div class="secthead">Message Shown on Chat Bar</div></td></tr>
+    	<tr>
+				<td colspan="2">
+					<input type="checkbox" id="zopimUseGreetings" onchange="greetingsChanged()" value="zopimUseGreetings" name="zopimUseGreetings"
+								<?php if (get_option('zopimUseGreetings') && get_option('zopimUseGreetings')!="disabled") { echo "checked='checked'"; } ?>/>
+					Use these greeting messages
+				</td>
+			</tr>
+    	<tr><td colspan="2"><div class="secthead">Message Shown on Chat Bar (max 26 characters)</div></td></tr>
         <tr valign="top">
         <th scope="row" class="sethead">Online</th>
         <td>
-        <input class="inputtextshort" name="zopimOnlineShort" id="zopimOnlineShort" onKeyup="updateSoon()" value="<?php echo $greetings->online->bar; ?>">
+        <input class="inputtextshort" name="zopimOnlineShort" id="zopimOnlineShort" onKeyup="updateSoon()" 
+				       value="<?php echo $greetings->online->bar; ?>"  
+       				 <?php if (!$useGreetings) echo "disabled='disabled'"?>
+               maxlength="26">
         </td>
         </tr>
 
         <tr valign="top">
         <th scope="row" class="sethead">Away</th>
         <td>
-        <input class="inputtextshort" name="zopimAwayShort" id="zopimAwayShort" onKeyup="updateSoon()"  value="<?php echo $greetings->away->bar; ?>">
+        <input class="inputtextshort" name="zopimAwayShort" id="zopimAwayShort" onKeyup="updateSoon()"  value="<?php echo $greetings->away->bar; ?>"  <?php if (!$useGreetings) echo "disabled='disabled'"?>  maxlength="26">
         </td>
         </tr>
 
         <tr valign="top">
         <th scope="row" class="sethead">Offline</th>
         <td>
-        <input class="inputtextshort" name="zopimOfflineShort" id="zopimOfflineShort" onKeyup="updateSoon()" value="<?php echo $greetings->offline->bar; ?>">
+        <input class="inputtextshort" name="zopimOfflineShort" id="zopimOfflineShort" onKeyup="updateSoon()" value="<?php echo $greetings->offline->bar; ?>" <?php if (!$useGreetings) echo "disabled='disabled'"?>  maxlength="26">
         </td>
         </tr>
 
 
-    	<tr><td colspan="2"><div class="secthead">Message Shown on Chat Panel</div></td></tr>
+    	<tr><td colspan="2"><div class="secthead">Message Shown on Chat Panel (max 140 characters)</div></td></tr>
         <tr valign="top">
         <th scope="row" class="sethead">Online</th>
         <td>
-        <textarea class="inputtext" name="zopimOnlineLong" id="zopimOnlineLong" onKeyup="updateSoon()"><?php echo $greetings->online->window; ?></textarea>
+        <textarea class="inputtext" name="zopimOnlineLong" id="zopimOnlineLong" onKeyup="updateSoon()"  <?php if (!$useGreetings) echo "disabled='disabled'"?> ><?php echo $greetings->online->window; ?></textarea>
         </td>
         </tr>
 
         <tr valign="top">
         <th scope="row" class="sethead">Away</th>
         <td>
-        <textarea class="inputtext" name="zopimAwayLong" id="zopimAwayLong" onKeyup="updateSoon()"><?php echo $greetings->away->window; ?></textarea>
+        <textarea class="inputtext" name="zopimAwayLong" id="zopimAwayLong" onKeyup="updateSoon()" <?php if (!$useGreetings) echo "disabled='disabled'"?> ><?php echo $greetings->away->window; ?></textarea>
         </td>
         </tr>
 
         <tr valign="top">
         <th scope="row" class="sethead">Offline</th>
         <td>
-        <textarea class="inputtext" name="zopimOfflineLong" id="zopimOfflineLong" onKeyup="updateSoon()"><?php echo $greetings->offline->window; ?></textarea>
+        <textarea class="inputtext" name="zopimOfflineLong" id="zopimOfflineLong" onKeyup="updateSoon()"  <?php if (!$useGreetings) echo "disabled='disabled'"?> ><?php echo $greetings->offline->window; ?></textarea>
         </td>
         </tr>
     </table>
@@ -406,6 +458,8 @@ function get_languages() {
 
 function update_checkbox($fieldname) {
    if (isset($_POST["$fieldname"]) && $_POST["$fieldname"] != "") {
+			echo $fieldname." : ".$_POST["$fieldname"];
+
       update_option($fieldname, $_POST["$fieldname"]);
    } else {
       update_option($fieldname, "disabled");

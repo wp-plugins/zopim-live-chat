@@ -2,33 +2,53 @@
 Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
-Tested up to: 2.9.2
-Stable tag: 1.0.6
+Tested up to: 3.0.3
+Stable tag: 1.0.7
 
-Visitors can chat with you directly by clicking on the Zopim Chat Bar. 
+Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
 
 == Description ==
 
-What if your website could talk? Zopim increases engagement between you and your visitors, by allowing them to chat with you! 
-Great for improving interaction with your users and increasing the time they spend on your site. 
+Update: In Oct 2010, Zopim was nominated Asia.s Top 10 Web Apps and selected as Red Herring Asia Top 100 Finalists. Read about it here: <a href="http://blog.zopim.com/?p=681">http://blog.zopim.com/?p=681</a>
+<br/>
+Build relationships with visitors to your website. They will be pleasantly surprised to know that a real person is there to respond to them.
 
-**Why use Zopim?**
+* Know what your customers are looking at. See which product page they are currently viewing
 
-* Installation happens in a flash - 60 seconds setup!
+* Let customers with questions reach you directly. Or proactively click on them to start a conversation
 
-* Choose to reply to visitors via your favorite IM client or the high productivity Dashboard
+* Reply to chats via any browser, or your favorite IM client. Chat from Gtalk, MSN, Yahoo! Messenger, AOL, and from Smart Phones that support mobile IM client.
 
-* Know exactly who enters your site! The name and email is automatically detected if he is a Wordpress user. 
+**What does Zopim look like?**
+Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat with you by clicking on the Zopim Chat Bar. 
 
-* Monitor visitors live as they surf, including their entry, location, history, current URL, repeat visitors etc
+**3 Reasons to Use Zopim (& Not Anyone Else)**
 
-* Customize widget look and feel: themes, colours, positions, greeting message.
+* Nice Interface, Great User Experience
 
-* Localise the widget to the language you want: English, Hebrew, Persian, Polish, Indonesian, Swedish, Bulgarian, Czech, Slovenian, Russian, Danish, Chinese, Croation, Thai, French, Dutch, Turkish, German, Faroese, Korean, Japanese.
+* One click deployment. So simple to setup and use, you.ll start loving it :)
 
-* Access a high productivity Dashboard: with saved chat history, templated messages, visitor prioritization, Q & A, smart responder
+* 16 hours online chat support even for free accounts . simply visit our website!
+
+**Zopim works across major browsers and IM**
+
+* Internet Explorer 6+, Firefox, Google Chrome, Opera, Safari ...
+
+* Gtalk / MSN / Yahoo! Messenger / AIM
+
+* iPhone, Blackberry & any other Smart Phones that supports mobile IM clients
+
+**See all languages available, lovingly translated by Zopim users (in alphabetical order)**
+
+* Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
+
 
 == Changelog ==
+= 1.0.7 =
+* Maintenance update: Remove phased out "middle left", "middle right" positions
+* Add options to let user decides hiding of chat bubble, no longer force show/hide
+* Enable option for not using plugins' greeting messages
+
 = 1.0.6 =
 * Maintenance update: Class' redeclaration conflict fix.
 
@@ -89,10 +109,11 @@ Great for improving interaction with your users and increasing the time they spe
 
 == Screenshots ==
 
-1. Chat window on your website
-2. Typical usage session in the dashboard
+1. Chat window on your website - active chat
+2. Chat widget on your website - minimized
 3. Account Configuration
 4. Styling and customiation
+5. Another nice screenshot on a 'virtual' monitor
 
 == Frequently Asked Questions ==
 
@@ -123,5 +144,6 @@ After enabling the plug in, head on to the widget customization page to change s
 
 == Installation ==
 
-*Server Requirements:* PHP4 or PHP5 with PHP Curl installed. 
-*Wordpress versions:* Wordpress 2.7 and up.
+*Server Requirements:* PHP4 or PHP5 with PHP Curl installed.<br/> 
+*Wordpress versions:* Wordpress 2.7 and up.<br/>
+*Thanks for using us* :)
