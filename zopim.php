@@ -44,10 +44,15 @@ function zopimme() {
 
    // Use zopim's code...
    echo "
-   <!-- Start of Zopim Live Chat Script -->
-   <script type=\"text/javascript\">
-document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//".ZOPIM_SCRIPT_DOMAIN."/?".$code."' charset='utf-8' type='text/javascript'%3E%3C/script%3E\"));
-      </script>
+<!-- Start of Zopim Live Chat Script -->
+<script type=\"text/javascript\">
+window.\$zopim||(function(d,s){var z=\$zopim=function(c){z._.push(c)},$=
+z.s=d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o
+){z.set._.push(o)};$.setAttribute('charset','utf-8');$.async=!0;z.set.
+_=[];$.src=('https:'==d.location.protocol?'https://ssl':'http://cdn')+
+'.zopim.com/?".$code."';$.type='text/java'+s;z.
+t=+new Date;z._=[];e.parentNode.insertBefore($,e)})(document,'script')
+</script>
 <!-- End of Zopim Live Chat Script -->
 ";
 
@@ -70,11 +75,14 @@ document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//"
       }
    }
 
-   echo '<script type="text/javascript">';
+   echo "
+\n<script type=\"text/javascript\"> 
+\n\$zopim( function() {
+";
    if (count($theoptions) > 0) {
       echo '$zopim.livechat.set({';
       echo implode(", ", $theoptions);      
-      echo "      });";
+      echo "});";
    }
    if (get_option('zopimPosition') != "") {
       echo "\n\$zopim.livechat.button.setPosition('".get_option('zopimPosition')."');";
@@ -106,17 +114,17 @@ document.write(unescape(\"%3Cscript src='\" + document.location.protocol + \"//"
 					}
 				}
 				echo "\n\$zopim.livechat.setGreetings({
-					 'online': ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
-							'offline': ['".addslashes($greetings->offline->bar)."', '".addslashes($greetings->offline->window)."'],
-							'away': ['".addslashes($greetings->away->bar)."', '".addslashes($greetings->away->window)."']  });
-					 ";
+  'online' : ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
+  'offline': ['".addslashes($greetings->offline->bar)."', '".addslashes($greetings->offline->window)."'],
+  'away'   : ['".addslashes($greetings->away->bar)."', '".addslashes($greetings->away->window)."']  });
+";
 		 }
 	 }
 		// this need to be called last
    if (get_option('zopimHideOnOffline') == "zopimHideOnOffline") {
       echo "\n\$zopim.livechat.button.setHideWhenOffline(true);";
    }
-   echo "</script>";
+   echo "\n})</script>";
 }
 
 function zopim_create_menu() {
@@ -128,6 +136,7 @@ function zopim_create_menu() {
    add_submenu_page('zopim_account_config', 'Customize Widget', 'Customize', 'administrator', 'zopim_customize_widget', 'zopim_customize_widget');
    add_submenu_page('zopim_account_config', 'IM Integration', 'IM Chat Bots', 'administrator', 'zopim_instant_messaging', 'zopim_instant_messaging');
    add_submenu_page('zopim_account_config', 'Dashboard', 'Dashboard', 'administrator', 'zopim_dashboard', 'zopim_dashboard');
+
 
    //call register settings function
    add_action( 'admin_init', 'register_mysettings' );
@@ -188,6 +197,7 @@ function register_mysettings() {
 
    // Message Settings
    register_setting( 'zopim-settings-group', 'zopimGreetings' );
+   register_setting( 'zopim-settings-group', 'zopimUseGreetings' );
 
    if (get_option('zopimCode') == "") {
       update_option('zopimCode', "zopim");
@@ -201,6 +211,10 @@ function register_mysettings() {
    }
    if (get_option('zopimBubbleEnable') == "") {
       update_option('zopimBubbleEnable', "checked");
+   }
+
+   if (get_option('zopimUseGreetings') == "") {
+      update_option('zopimUseGreetings', "disabled");
    }
 
    if (get_option('zopimGreetings') == "") {

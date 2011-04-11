@@ -142,6 +142,8 @@ function zopim_customize_widget() {
         var el = document.getElementById(inputs[i]);
         el.disabled = isDisabled;
     }
+
+		updateWidget();
 	}
 
    var timer;
@@ -340,7 +342,7 @@ line-height:21px;
 </div>
 
 <?php 
-	if (get_option("zopimUseGreetings") && get_option("zopimUseGreetings"!="disabled")) {
+  if (get_option('zopimUseGreetings') && get_option('zopimUseGreetings')!="disabled") {
 		$useGreetings = true;
   }	else {
 		$useGreetings = false;
@@ -354,7 +356,7 @@ line-height:21px;
     	<tr>
 				<td colspan="2">
 					<input type="checkbox" id="zopimUseGreetings" onchange="greetingsChanged()" value="zopimUseGreetings" name="zopimUseGreetings"
-								<?php if (get_option('zopimUseGreetings') && get_option('zopimUseGreetings')!="disabled") { echo "checked='checked'"; } ?>/>
+								<?php if ($useGreetings) { echo "checked='checked'"; } ?>/>
 					Use these greeting messages
 				</td>
 			</tr>
@@ -450,16 +452,13 @@ function generate_options($options, $current) {
 }
 
 function get_languages() {
-
-   $langjson = '{"--":" - Auto Detect - ","ar":"Arabic","bg":"Bulgarian","cs":"Czech","da":"Danish","de":"German","en":"English","es":"Spanish; Castilian","fa":"Persian","fo":"Faroese","fr":"French","he":"Hebrew","hr":"Croatian","id":"Indonesian","it":"Italian","ja":"Japanese","ko":"Korean","ms":"Malay","nb":"Norwegian Bokmal","nl":"Dutch; Flemish","pl":"Polish","pt":"Portuguese","ru":"Russian","sk":"Slovak","sl":"Slovenian","sv":"Swedish","th":"Thai","tr":"Turkish","ur":"Urdu","vi":"Vietnamese","zh_CN":"Chinese (China)"}hihi{"--":" - Auto Detect - ","ar":"Arabic","bg":"Bulgarian","cs":"Czech","da":"Danish","de":"German","en":"English","es":"Spanish; Castilian","fa":"Persian","fo":"Faroese","fr":"French","he":"Hebrew","hr":"Croatian","id":"Indonesian","it":"Italian","ja":"Japanese","ko":"Korean","ms":"Malay","nb":"Norwegian Bokmal","nl":"Dutch; Flemish","pl":"Polish","pt":"Portuguese","ru":"Russian","sk":"Slovak","sl":"Slovenian","sv":"Swedish","th":"Thai","tr":"Turkish","ur":"Urdu","vi":"Vietnamese","zh_CN":"Chinese (China)"}';
+		$langjson = '{"--":" - Auto Detect - ","ar":"Arabic","bn":"Bengali","bg":"Bulgarian","zh_CN":"Chinese (China)","zh_TW":"Chinese (Taiwan)","hr":"Croatian","cs":"Czech","da":"Danish","nl":"Dutch; Flemish","et":"Estonian","fo":"Faroese","fi":"Finnish","fr":"French","ka":"Georgian","de":"German","el":"Greek","he":"Hebrew","hu":"Hungarian","is":"Icelandic","id":"Indonesian","it":"Italian","ja":"Japanese","ko":"Korean","ku":"Kurdish","lv":"Latvian","lt":"Lithuanian","mk":"Macedonian","ms":"Malay","nb":"Norwegian Bokmal","fa":"Persian","pl":"Polish","pt":"Portuguese","pt_BR":"Portuguese (Brazil)","ro":"Romanian","ru":"Russian","sr":"Serbian","sk":"Slovak","sl":"Slovenian","es":"Spanish; Castilian","sv":"Swedish","th":"Thai","tr":"Turkish","uk":"Ukrainian","ur":"Urdu","vi":"Vietnamese"}';
 
    return json_to_array($langjson);
 }
 
 function update_checkbox($fieldname) {
    if (isset($_POST["$fieldname"]) && $_POST["$fieldname"] != "") {
-			echo $fieldname." : ".$_POST["$fieldname"];
-
       update_option($fieldname, $_POST["$fieldname"]);
    } else {
       update_option($fieldname, "disabled");
