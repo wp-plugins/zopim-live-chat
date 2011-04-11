@@ -2,15 +2,15 @@
 Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
-Tested up to: 3.0.3
-Stable tag: 1.0.7
+Tested up to: 3.1.1
+Stable tag: 1.1.0
 
 Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
 
 == Description ==
 
 Update: In Oct 2010, Zopim was nominated Asia.s Top 10 Web Apps and selected as Red Herring Asia Top 100 Finalists. Read about it here: <a href="http://blog.zopim.com/?p=681">http://blog.zopim.com/?p=681</a>
-
+<br/>
 Build relationships with visitors to your website. They will be pleasantly surprised to know that a real person is there to respond to them.
 
 * Know what your customers are looking at. See which product page they are currently viewing
@@ -20,7 +20,6 @@ Build relationships with visitors to your website. They will be pleasantly surpr
 * Reply to chats via any browser, or your favorite IM client. Chat from Gtalk, MSN, Yahoo! Messenger, AOL, and from Smart Phones that support mobile IM client.
 
 **What does Zopim look like?**
-
 Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat with you by clicking on the Zopim Chat Bar. 
 
 **3 Reasons to Use Zopim (& Not Anyone Else)**
@@ -45,6 +44,11 @@ Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat 
 
 
 == Changelog ==
+= 1.1.0 =
+* Maintenace update: Greeting messages are now saved properly.
+* Add more language options in customization page.
+* Using new Zopim async embed script: improve page's load time and do not block page's rendering anymore.
+
 = 1.0.7 =
 * Maintenance update: Remove phased out "middle left", "middle right" positions
 * Add options to let user decides hiding of chat bubble, no longer force show/hide
@@ -145,8 +149,6 @@ After enabling the plug in, head on to the widget customization page to change s
 
 == Installation ==
 
-*Server Requirements:* PHP4 or PHP5 with PHP Curl installed.
- 
-*Wordpress versions:* Wordpress 2.7 and up.
-
+*Server Requirements:* PHP4 or PHP5 with PHP Curl installed.<br/> 
+*Wordpress versions:* Wordpress 2.7 and up.<br/>
 *Thanks for using us* :)
