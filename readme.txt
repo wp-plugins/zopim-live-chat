@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 3.3.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 
 Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
 
@@ -44,11 +44,14 @@ Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat 
 
 
 == Changelog ==
+= 1.1.2 =
+* Maintenance update: Compatibility update for Wordpress 3.3.1
+
 = 1.1.1 =
-* Maintenace update: Fix invalid plugin header (zopim.php) for new installation
+* Maintenance update: Fix invalid plugin header (zopim.php) for new installation
 
 = 1.1.0 =
-* Maintenace update: Greeting messages are now saved properly.
+* Maintenance update: Greeting messages are now saved properly.
 * Add more language options in customization page.
 * Using new Zopim async embed script: improve page's load time and do not block page's rendering anymore.
 
