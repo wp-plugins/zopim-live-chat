@@ -2,7 +2,7 @@
 Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
-Tested up to: 3.1.1
+Tested up to: 3.3.1
 Stable tag: 1.1.1
 
 Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
