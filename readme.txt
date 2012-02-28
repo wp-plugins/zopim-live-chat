@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 3.3.1
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 
 Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
 
@@ -42,8 +42,11 @@ Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat 
 
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
-
 == Changelog ==
+= 1.1.3 =
+* Update Zopim embed script
+* Add option to override dashboard settings for chat bubble text
+
 = 1.1.2 =
 * Maintenance update: Compatibility update for Wordpress 3.3.1
 
@@ -53,7 +56,7 @@ Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat 
 = 1.1.0 =
 * Maintenance update: Greeting messages are now saved properly.
 * Add more language options in customization page.
-* Using new Zopim async embed script: improve page's load time and do not block page's rendering anymore.
+* Using new Zopim async embed script: improve page's load time and do not block page's rendering anymore
 
 = 1.0.7 =
 * Maintenance update: Remove phased out "middle left", "middle right" positions
@@ -151,12 +154,10 @@ Dont worry!! We are happy to assist! Just come on down to our site at http://www
 
 == Usage ==
 
-After enabling the plug in, head on to the widget customization page to change settings and integrate it's look and feel with your site. When done, enable it by visiting the account configuration page and completing the instant signup process. 
+After enabling the plug in, head on to the widget customization page to change settings and integrate its look and feel to match your site. When done, enable it by visiting the account configuration page and completing the instant signup process. 
 
 == Installation ==
 
 *Server Requirements:* PHP4 or PHP5 with PHP Curl installed.
 
 *Wordpress versions:* Wordpress 2.7 and up.
-
-*Thanks for using us* :)
