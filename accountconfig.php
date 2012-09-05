@@ -123,35 +123,7 @@ Congratulations on successfully installing the Zopim WordPress plugin! Activate 
 <br>
 <?php } else { echo $message; } ?>
 
-<script type="text/javascript">
-
-function showSignup(whichform) {
-		if (whichform == '1') {
-			document.getElementById('existingform').style.display = "none";
-			document.getElementById('signupform').style.display = "block";
-			document.getElementById('formtoshow_signup').checked = 'true';
-		} else {
-			document.getElementById('signupform').style.display = "none";
-			document.getElementById('existingform').style.display = "block";
-			document.getElementById('formtoshow_existing').checked = 'true';
-		}
-}
-
-
-</script>
-<div class="metabox-holder">
-	<div class="postbox">
-		<h3 class="hndle"><span>Select a Setup</span></h3>
-		<div style="padding:10px;">
-<div onclick="javascript: showSignup(1)"><input type="radio" name="formtoshow" id="formtoshow_signup" value="yes" onchange="javascript: showSignup(1)"/> Give me a new account &mdash; <i>absolutely free!</i></div>
-<br/>
-<div onclick="javascript: showSignup(0)"><input type="radio" name="formtoshow" id="formtoshow_existing" value="no" onchange="javascript: showSignup(0)"/> I already have a Zopim account</div>
-		</div>
-	</div>
-</div>
-
-
-<div id="existingform" style="display: none">
+<div id="existingform">
 	<div class="metabox-holder">
 		<div class="postbox">
 			<h3 class="hndle"><span>Link up to your Zopim account</span></h3>
@@ -178,9 +150,10 @@ function showSignup(whichform) {
 	 </table>
 		<br/>
 		The Zopim chat bar will displayed on your blog once your account is linked up.
-		<br/><br/>
+		<br/>
 	 <p class="submit">
 	 <input type="submit" class="button-primary" value="<?php _e('Link Up') ?>" />
+	 Don't have a zopim account? <a href="<?php echo ZOPIM_SIGNUP_REDIRECT_URL; ?>" target="_blank" data-popup="true">Sign up now</a>.
 	 </p>
 
 </form>
@@ -190,108 +163,7 @@ function showSignup(whichform) {
 	</div>
 </div>
 
-<div id="signupform" style="display: none">
-	<div class="metabox-holder">
-		<div class="postbox">
-			<h3 class="hndle"><span>Activate your free Zopim Account</span></h3>
-			<div style="padding:10px;">
-<form method="post" action="admin.php?page=zopim_account_config" onSubmit="return checkSignUp();">
-	 <input type="hidden" name="action" value="signup">
-	 <div id="signuperror"></div>
-	 <table class="form-table">
-
-		  <tr valign="top">
-		  <th scope="row">First Name</th>
-		  <td><input id="zopimfirstname" type="text" name="zopimfirstname" value="<?php if (isset($_POST["zopimfirstname"])) { echo $_POST["zopimfirstname"]; } else { echo $current_user->data->first_name; } ?>"></td>
-		  </tr>
-
-		  <tr valign="top">
-		  <th scope="row">Last Name</th>
-		  <td><input id="zopimlastname" type="text" name="zopimlastname" value="<?php if (isset($_POST["zopimlastname"])) { echo $_POST["zopimnlastname"]; } else { echo $current_user->data->last_name; } ?>"></td>
-		  </tr>
-
-		  <tr valign="top">
-		  <th scope="row">E-mail</th>
-		  <td><input id="zopimnewemail" type="text" name="zopimnewemail" value="<?php if (isset($_POST["zopimnewemail"])) { echo $_POST["zopimnewemail"]; } else { echo $current_user->data->user_email; }  ?>"></td>
-		  </tr>
-
-		  <tr valign="top">
-		  <th scope="row">Use SSL</th>
-		  <td><input type="checkbox" name="zopimUseSSL" value="zopimUseSSL" checked="checked" } ?> uncheck this if you are unable to login</td>
-		  </tr>
-
-		  <tr valign="top">
-		  <th scope="row">Verification</th>
-		  <td>
-			 <script type="text/javascript" src="https://api-secure.recaptcha.net/challenge?k=6Lfr8AQAAAAAAC7MpRXM2hgLfyss_KKjvcJ_JFIk">
-			</script>
-			<noscript>
-				<iframe src="https://api-secure.recaptcha.net/noscript?k=6Lfr8AQAAAAAAC7MpRXM2hgLfyss_KKjvcJ_JFIk"
-					 height="300" width="500" frameborder="0"></iframe><br>
-				<textarea name="recaptcha_challenge_field" rows="3" cols="40">
-				</textarea>
-				<input type="hidden" name="recaptcha_response_field"
-					 value="manual_challenge">
-			</noscript>
-
-		  </td>
-		  </tr>
-<!--
-		  <tr valign="top">
-		  <th scope="row">Referral E-mail or ID</th>
-		  <td><input id="zopimeref" type="text" name="zopimeref" value="<?php if (isset($_POST)) { echo $_POST["zopimeref"]; } ?>"></td>
-		  </tr>
--->
-	 </table>
-		<br/>
-		The Zopim chat bar will displayed on your blog once your account is activated.<br/><br/>
-		<input id="zopimagree" type="checkbox" name="zopimagree" value=""> I agree to Zopim's <a href="http://www.zopim.com/termsnconditions" target="_blank">Terms of Service</a> & <a href="http://www.zopim.com/privacypolicy" target="_blank">Privacy Policy</a>.
-		<br/><br/>
-	 <p class="submit">
-	 <input type="submit" class="button-primary" value="<?php _e('Activate Now') ?>" />
-	 </p>
-</form>
-			</div>
-		</div>
-	</div>
-
-</div>
 </div>
 
-<script type="text/javascript">
-<?php
-if ($authenticated != "ok" && !isset($gotologin) && get_option("zopimCode")=="zopim") {
-	echo "showSignup(1); ";
-} else {
-	echo "showSignup(0); ";
-}
-
-?>
-
-function checkSignUp() {
-
-	var message = 'Oops! ';
-	if (document.getElementById('zopimfirstname').value == '') {
-
-		message = message + 'First name is required. ';
-	}
-	if (document.getElementById('zopimlastname').value == '') {
-
-		message = message + 'Last name is required. ';
-	}
-	if (document.getElementById('zopimagree').checked == '') {
-
-		message = message + 'You must agree to our Terms of Service to continue. ';
-	}
-
-	if (message != 'Oops! ') {
-
-		document.getElementById('signuperror').innerHTML = message;
-		return false;
-	}
-
-  return true;
-}
-</script>
 
 <?php } } ?>

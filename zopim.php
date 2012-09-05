@@ -2,15 +2,16 @@
 
 /*
 Plugin Name: Zopim Widget
-Plugin URI: http://www.zopim.org
+Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
 Author: Zopim
-Version: 1.1.3
-Author URI: http://www.zopim.com/
+Version: 1.2.0
+Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
 define('ZOPIM_SCRIPT_DOMAIN',         "zopim.com");
 define('ZOPIM_BASE_URL',              "https://www.zopim.com/");
+define('ZOPIM_SIGNUP_REDIRECT_URL',   ZOPIM_BASE_URL."?iref=wordpress_plugin#signup");
 define('ZOPIM_GETACCOUNTDETAILS_URL', ZOPIM_BASE_URL."plugins/getAccountDetails");
 define('ZOPIM_SETDISPLAYNAME_URL',    ZOPIM_BASE_URL."plugins/setDisplayName");
 define('ZOPIM_IMINFO_URL',            ZOPIM_BASE_URL."plugins/getImSetupInfo");
@@ -20,7 +21,7 @@ define('ZOPIM_SIGNUP_URL',            ZOPIM_BASE_URL."plugins/createTrialAccount
 define('ZOPIM_THEMES_LIST',           "http://zopim.com/assets/dashboard/themes/window/plugins-themes.txt");
 define('ZOPIM_COLORS_LIST',           "http://zopim.com/assets/dashboard/themes/window/plugins-colors.txt");
 define('ZOPIM_LANGUAGES_URL',         "http://translate.zopim.com/projects/zopim/");
-define('ZOPIM_DASHBOARD_URL',         "http://dashboard.zopim.com/");
+define('ZOPIM_DASHBOARD_URL',         "http://dashboard.zopim.com/?iref=wp_plugin");
 define('ZOPIM_SMALL_LOGO',            "http://zopim.com/assets/branding/zopim.com/chatman/online.png");
 define('ZOPIM_IM_LOGOS',              "http://www.zopim.com/static/images/im/");
 define('ZOPIM_THEMES_URL',            "http://");
