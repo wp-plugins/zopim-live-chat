@@ -4,9 +4,9 @@
 Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.org
 Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
-Author: Isidore
-Version: 1.1.1
-Author URI: http://www.isidorechan.com/
+Author: Zopim
+Version: 1.1.3
+Author URI: http://www.zopim.com/
 */
 
 define('ZOPIM_SCRIPT_DOMAIN',         "zopim.com");
@@ -54,19 +54,19 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 
   $theoptions = array();
   if (get_option('zopimLang') != "" && get_option('zopimLang') != "--")
-    $theoptions[] = " language: '".get_option('zopimLang')."'";
+	 $theoptions[] = " language: '".get_option('zopimLang')."'";
 
   if (isset($current_user) && get_option("zopimGetVisitorInfo") == "checked") {
-    $ul = $current_user->data->first_name;
-    $useremail = $current_user->data->user_email;
-    if ($ul!="" && $useremail != "")
-      $theoptions[] = "name: '$ul', email: '$useremail'";
+	 $ul = $current_user->data->first_name;
+	 $useremail = $current_user->data->user_email;
+	 if ($ul!="" && $useremail != "")
+		$theoptions[] = "name: '$ul', email: '$useremail'";
   }
 
   echo "\n<script type=\"text/javascript\">\n\$zopim( function() {";
 
   if (count($theoptions) > 0)
-    echo '$zopim.livechat.set({'.implode(", ", $theoptions)."});";
+	 echo '$zopim.livechat.set({'.implode(", ", $theoptions)."});";
 
   get_option('zopimPosition')    != "" && print("\n\$zopim.livechat.button.setPosition('".get_option('zopimPosition')."');");
   get_option('zopimTheme')       != "" && print("\n\$zopim.livechat.window.setTheme('".get_option('zopimTheme')."');");
@@ -76,8 +76,8 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 	  if (get_option('zopimGreetings') != "") {
 			$greetings = json_to_array(get_option('zopimGreetings'));
 			foreach ($greetings as $i => $v) {
-		    foreach ($v as $j => $k) {
-		  		$greetings->$i->$j = str_replace("\r\n", "\\n", $greetings->$i->$j);
+			 foreach ($v as $j => $k) {
+				$greetings->$i->$j = str_replace("\r\n", "\\n", $greetings->$i->$j);
 			  }
 		  }
 			echo "\n\$zopim.livechat.setGreetings({
@@ -99,7 +99,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 
 	// this must be called last
   if (get_option('zopimHideOnOffline') == "zopimHideOnOffline")
-    echo "\n\$zopim.livechat.button.setHideWhenOffline(true);";
+	 echo "\n\$zopim.livechat.button.setHideWhenOffline(true);";
   echo "\n})</script>";
 }
 
@@ -119,11 +119,11 @@ function zopim_create_menu() {
 
 function check_zopimCode() {
 /*
-   //   if (get_option('zopimCode') == '' && ($_GET["page"] != "zopim_account_config")) {
-   if (ereg("zopim", $_GET["page"] )) {
-      //add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>" . sprintf( "Please <a href=\"%s\">input your Zopim account details</a>.", "admin.php?page=zopim_account_config" ) . "</p></div>";' ) );
-      add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>This Zopim plugin is a work in progress. We will launch on the 25th of January. Thank you for your interest.</p></div>";' ) );
-   }
+	//   if (get_option('zopimCode') == '' && ($_GET["page"] != "zopim_account_config")) {
+	if (ereg("zopim", $_GET["page"] )) {
+		//add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>" . sprintf( "Please <a href=\"%s\">input your Zopim account details</a>.", "admin.php?page=zopim_account_config" ) . "</p></div>";' ) );
+		add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>This Zopim plugin is a work in progress. We will launch on the 25th of January. Thank you for your interest.</p></div>";' ) );
+	}
  */
   return false;
 }
@@ -140,7 +140,7 @@ function zopim_about() {
 
 function zopim_dashboard() {
   echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'" height=700 width=98% scrolling="no"></iframe></div>      You may also <a href="'.ZOPIM_DASHBOARD_URL.'" target="_newWindow" onClick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.
-      ';
+		';
 }
 
 // Register the option settings we will be using
@@ -184,13 +184,13 @@ add_action('admin_menu', 'zopim_create_menu');
 function do_post_request($url, $_data, $optional_headers = null)
 {
   if (get_option('zopimUseSSL') != "zopimUseSSL")
-    $url = str_replace("https", "http", $url);
+	 $url = str_replace("https", "http", $url);
 
-  $data = array();    
+  $data = array();
 
   while(list($n,$v) = each($_data)){
-    $data[] = urlencode($n)."=".urlencode($v);
-  }    
+	 $data[] = urlencode($n)."=".urlencode($v);
+  }
 
   $data = implode('&', $data);
 
