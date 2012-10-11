@@ -1,7 +1,6 @@
 <?php
 
 // Zopim Customize Widget Page
-
 function zopim_customize_widget() {
 	global $current_user;
 	$ul        = $current_user->data->first_name;
@@ -263,7 +262,7 @@ line-height:21px;
 
 	 if ($accountDetails->color_customization_enabled == 1) {
 			echo "<div style='display:inline-block;border:11px solid #888;background:#888;color:#fee;'>";
-			$colors = curl_get_url(ZOPIM_COLORS_LIST);
+			$colors = zopim_url_get(ZOPIM_COLORS_LIST);
 			$colors = explode("\n", $colors);
 
 			$i=0;
@@ -287,7 +286,7 @@ line-height:21px;
 
 	if ($accountDetails->widget_customization_enabled == 1) {
 		echo '<select name="zopimTheme" id="zopimTheme" onchange="updateWidget()">';
-		$themes = curl_get_url(ZOPIM_THEMES_LIST);
+		$themes = zopim_url_get(ZOPIM_THEMES_LIST);
 		$themes = valuekeys(explode("\n", $themes));
 		ksort($themes);
 

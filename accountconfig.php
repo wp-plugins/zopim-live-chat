@@ -10,13 +10,13 @@ function zopim_account_config() {
 
 <?php
 
-	if ($_GET["action"]=="deactivate") {
+	if (isset($_GET["action"]) && $_GET["action"]=="deactivate") {
 		update_option('zopimSalt', "");
 		update_option('zopimCode', "zopim");
 	}
 
 	$message = "";
-	if ($_POST["action"]=="login") {
+	if (isset($_POST["action"]) && $_POST["action"]=="login") {
 		if ($_POST["zopimUseSSL"] == "") {
 			$_POST["zopimUseSSL"] = "nossl";
 		}
@@ -49,7 +49,7 @@ function zopim_account_config() {
 				$error["login"] = "<b>Could not log in to Zopim. We were unable to contact Zopim servers. Please check with your server administrator to ensure that <a href='http://www.php.net/manual/en/book.curl.php'>PHP Curl</a> is installed and permissions are set correctly.</b>";
 			}
 		}
-	} else if ($_POST["action"]=="signup") {
+	} else if (isset($_POST["action"]) && $_POST["action"]=="signup") {
 
 		if ($_POST["zopimUseSSL"] == "") {
 			$_POST["zopimUseSSL"] = "nossl";

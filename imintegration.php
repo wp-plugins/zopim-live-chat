@@ -15,9 +15,9 @@ $salt = array('salt' => get_option('zopimSalt'));
 if (isset($_GET["remove"]) && $_GET["remove"] == 1) {
 	echo "Removed IM Set Up. <br><br>";
 
-	json_to_array(do_post_request(ZOPIM_IMREMOVE_URL, $salt));
+	json_to_array(zopim_post_request(ZOPIM_IMREMOVE_URL, $salt));
 }
-$iminfo = json_to_array(do_post_request(ZOPIM_IMINFO_URL, $salt));
+$iminfo = json_to_array(zopim_post_request(ZOPIM_IMINFO_URL, $salt));
 
 if (isset($iminfo->bots)) { // Can set up IM ?>
 
