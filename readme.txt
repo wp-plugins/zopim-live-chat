@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 3.3.1
-Stable tag: 1.1.3
+Stable tag: 1.2.0
 
 Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
 
@@ -20,7 +20,7 @@ Build relationships with visitors to your website. They will be pleasantly surpr
 * Reply to chats via any browser, or your favorite IM client. Chat from Gtalk, MSN, Yahoo! Messenger, AOL, and from Smart Phones that support mobile IM client.
 
 **What does Zopim look like?**
-Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat with you by clicking on the Zopim Chat Bar. 
+Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat with you by clicking on the Zopim Chat Bar.
 
 **3 Reasons to Use Zopim (& Not Anyone Else)**
 
@@ -43,6 +43,10 @@ Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat 
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+
+= 1.2.0 =
+* Signup process is now linked to zopim.com as per Wordpress guidelines.
+
 = 1.1.3 =
 * Update Zopim embed script
 * Add option to override dashboard settings for chat bubble text
@@ -140,21 +144,21 @@ Not at all! Zopim is a hosted livechat service. Simply configure the plugin and 
 Though designed to work on most browsers, Zopim works best in the following environment: IE 6 or later (PC), Firefox 2 or later (Mac, PC, or Linux), Safari 2 or later (Mac), Google Chrome (PC, Mac).
 
 = I managed to install the plugin but cannot link up to Zopim. Why? =
-Most likely PHP Curl is not installed or configured properly. Please request your server administrator to enable the PHP CURL extension (see http://www.php.net/manual/en/book.curl.php for details). 
+Most likely PHP Curl is not installed or configured properly. Please request your server administrator to enable the PHP CURL extension (see http://www.php.net/manual/en/book.curl.php for details).
 
-Alternatively, you can also manually include the script in the footer file ("wp-content/themes/default/footer.php" in your wordpress installation). 
+Alternatively, you can also manually include the script in the footer file ("wp-content/themes/default/footer.php" in your wordpress installation).
 
 = Is it free to use? =
 
-The plugin comes with a free plan specially tailored for Wordpress users. Power users can purchase upgrade options anytime. 
+The plugin comes with a free plan specially tailored for Wordpress users. Power users can purchase upgrade options anytime.
 
 = Its just not working for me! HELP! =
 
-Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com or leave an email for us at wordpress@zopim.com and we will help you with installation. 
+Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com or leave an email for us at wordpress@zopim.com and we will help you with installation.
 
 == Usage ==
 
-After enabling the plug in, head on to the widget customization page to change settings and integrate its look and feel to match your site. When done, enable it by visiting the account configuration page and completing the instant signup process. 
+After enabling the plug in, head on to the widget customization page to change settings and integrate its look and feel to match your site. When done, enable it by visiting the account configuration page and completing the instant signup process.
 
 == Installation ==
 
