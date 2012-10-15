@@ -16,16 +16,19 @@ function zopim_account_config() {
 	}
 
 	$message = "";
+	$authenticated = "";
+
 	if (isset($_POST["action"]) && $_POST["action"]=="login") {
-		if ($_POST["zopimUseSSL"] == "") {
+		if (!isset($_POST["zopimUseSSL"]) || $_POST["zopimUseSSL"] == '') {
 			$_POST["zopimUseSSL"] = "nossl";
 		}
+
 		update_option('zopimUseSSL', $_POST["zopimUseSSL"]);
 
 		if ($_POST["zopimPassword"] != "password") {
 
 			$logindata = array("email" => $_POST["zopimUsername"], "password" => $_POST["zopimPassword"]);
-			$loginresult = json_to_array(do_post_request(ZOPIM_LOGIN_URL, $logindata));
+			$loginresult = json_to_array(zopim_post_request(ZOPIM_LOGIN_URL, $logindata));
 
 			if (isset($loginresult->error)) {
 				$error["login"] = "<b>Could not log in to Zopim. Please check your login details. If problem persists, try connecting without SSL enabled.</b>";
@@ -67,7 +70,7 @@ function zopim_account_config() {
 			"recaptcha_response_field" => $_POST["recaptcha_response_field"]
 		);
 
-		$signupresult = json_to_array(do_post_request(ZOPIM_SIGNUP_URL, $createdata));
+		$signupresult = json_to_array(zopim_post_request(ZOPIM_SIGNUP_URL, $createdata));
 		if (isset($signupresult->error)) {
 			$message = "<div style='color:#c33;'>Error during activation: <b>".$signupresult->error."</b>. Please try again.</div>";
 		} else if (isset($signupresult->account_key)) {
@@ -78,10 +81,10 @@ function zopim_account_config() {
 		}
 	}
 
+	$error = NULL;
 	if (get_option('zopimCode') != "" && get_option('zopimCode') != "zopim") {
 
 		$accountDetails = getAccountDetails(get_option('zopimSalt'));
-
 		if (!isset($accountDetails) || isset($accountDetails->error)) {
 			$gotologin = 1;
 			$error["auth"] = '
