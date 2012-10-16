@@ -5,8 +5,7 @@ Requires at least: 2.7
 Tested up to: 3.3.1
 Stable tag: 1.2.2
 
-More than 50,000 businesses use Zopim to chat with customers on their websites. Convert your visitors into customers, and customers into fans. Instantly. Sign up for a Free Trial of our award-winning product.
-
+Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 
 == Description ==
 
@@ -54,9 +53,10 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 
 = 1.2.2 =
 * adds User Capability levels, allowing non-admins to use the plugin admin interface
-* Users can use add the following code
+* Admins can use add the following code
 	$role = get_role( 'editor' ); $role->add_cap( 'access_zopim' );
-to their themes, or use the Members plugin (http://wordpress.org/extend/plugins/members/) to give roles the 'access_zopim' capability.
+to their themes, or use the Members plugin (http://wordpress.org/extend/plugins/members/)
+to give roles the 'access_zopim' capability.
 
 = 1.2.1 =
 * Uses wordpress http api for better linkup support with multiple transports
@@ -163,7 +163,7 @@ Not at all! Zopim is a hosted livechat service. Simply configure the plugin and 
 Though designed to work on most browsers, Zopim works best in the following environment: IE 6 or later (PC), Firefox 2 or later (Mac, PC, or Linux), Safari 2 or later (Mac), Google Chrome (PC, Mac).
 
 = I managed to install the plugin but cannot link up to Zopim. Why? =
-Most likely PHP Curl is not installed or configured properly. Please request your server administrator to enable the PHP CURL extension (see http://www.php.net/manual/en/book.curl.php for details).
+The plugin tries to link up with zopim by connecting using a few approaches including PHP Curl. If the outgoing connections are blocked (eg. by a firewall), please request your server administrator.
 
 Alternatively, you can also manually include the script in the footer file ("wp-content/themes/default/footer.php" in your wordpress installation).
 
@@ -190,6 +190,7 @@ After enabling the plug in, head on to the widget customization page to change s
 *Wordpress versions:* Wordpress 2.7 and up.
 
 Step-by-step Guide:
+
 * Install plugin from WordPress directory and activate it.
 * Under Zopim Chat section, click on Account Setup to link up your Zopim account.
 * Customize the chat widget to your preference.
