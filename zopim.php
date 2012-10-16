@@ -3,7 +3,7 @@
 /*
 Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
-Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
+Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
 Version: 1.2.2
 Author URI: http://www.zopim.com/?iref=wp_plugin
