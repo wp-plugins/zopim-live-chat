@@ -3,9 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 2.7
 Tested up to: 3.3.1
-Stable tag: 1.2.1
-
-Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
+Stable tag: 1.2.2
 
 More than 50,000 businesses use Zopim to chat with customers on their websites. Convert your visitors into customers, and customers into fans. Instantly. Sign up for a Free Trial of our award-winning product.
 
@@ -36,7 +34,7 @@ Zopim Live Chat shows up as a chatbar docked at the bottom of your website. Visi
 
 Just to name a few!
 
-**Some Geek Facats**
+**Some Geeky Facts**
 
 * Work across major browsers ( Internet Explorer 6+, Firefox, Google Chrome, Opera, Safar) and IMs (Gtalk / MSN / Yahoo! Messenger / AIM).
 * Uptime averaged 99.8%.
@@ -53,6 +51,13 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+
+= 1.2.2 =
+* adds User Capability levels, allowing non-admins to use the plugin admin interface
+* Admins can use add the following code
+	$role = get_role( 'editor' ); $role->add_cap( 'access_zopim' );
+to their themes, or use the Members plugin (http://wordpress.org/extend/plugins/members/)
+to give roles the 'access_zopim' capability.
 
 = 1.2.1 =
 * Uses wordpress http api for better linkup support with multiple transports

@@ -5,13 +5,13 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim embeds a chatbar on your website, so that any visitor can chat with you directly by clicking on the chatbar.
 Author: Zopim
-Version: 1.2.1
+Version: 1.2.2
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
 define('ZOPIM_SCRIPT_DOMAIN',         "zopim.com");
 define('ZOPIM_BASE_URL',              "https://www.zopim.com/");
-define('ZOPIM_SIGNUP_REDIRECT_URL',   ZOPIM_BASE_URL."?iref=wordpress_plugin#signup");
+define('ZOPIM_SIGNUP_REDIRECT_URL',   ZOPIM_BASE_URL."?iref=wp_plugin#signup");
 define('ZOPIM_GETACCOUNTDETAILS_URL', ZOPIM_BASE_URL."plugins/getAccountDetails");
 define('ZOPIM_SETDISPLAYNAME_URL',    ZOPIM_BASE_URL."plugins/setDisplayName");
 define('ZOPIM_IMINFO_URL',            ZOPIM_BASE_URL."plugins/getImSetupInfo");
@@ -30,6 +30,14 @@ define('ZOPIM_COLOURS_URL',           "http://");
 require_once dirname( __FILE__ ) . '/accountconfig.php';
 require_once dirname( __FILE__ ) . '/customizewidget.php';
 require_once dirname( __FILE__ ) . '/imintegration.php';
+
+function add_zopim_caps() {
+	$role = get_role( 'administrator' );
+	$role->add_cap( 'access_zopim' );
+}
+
+add_action( 'admin_init', 'add_zopim_caps');
+
 
 // We need some CSS to position the paragraph
 function zopimme() {
@@ -106,34 +114,17 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 
 function zopim_create_menu() {
 	//create new top-level menu
-	add_menu_page('Account Configuration', 'Zopim Chat', 'administrator', 'zopim_account_config', 'zopim_account_config', ZOPIM_SMALL_LOGO);
+	add_menu_page('Account Configuration', 'Zopim Chat', 'access_zopim', 'zopim_account_config', 'zopim_account_config', ZOPIM_SMALL_LOGO);
 
-	// add_submenu_page('zopim_about', "About", "About", "administrator", 'zopim_about', 'zopim_about');
-	add_submenu_page('zopim_account_config', 'Account Configuration', 'Account Setup', 'administrator', 'zopim_account_config', 'zopim_account_config');
-	add_submenu_page('zopim_account_config', 'Customize Widget', 'Customize', 'administrator', 'zopim_customize_widget', 'zopim_customize_widget');
-	add_submenu_page('zopim_account_config', 'IM Integration', 'IM Chat Bots', 'administrator', 'zopim_instant_messaging', 'zopim_instant_messaging');
-	add_submenu_page('zopim_account_config', 'Dashboard', 'Dashboard', 'administrator', 'zopim_dashboard', 'zopim_dashboard');
+	// add_submenu_page('zopim_about', "About", "About", "access_zopim", 'zopim_about', 'zopim_about');
+	add_submenu_page('zopim_account_config', 'Account Configuration', 'Account Setup', 'access_zopim', 'zopim_account_config', 'zopim_account_config');
+	add_submenu_page('zopim_account_config', 'Customize Widget', 'Customize', 'access_zopim', 'zopim_customize_widget', 'zopim_customize_widget');
+	add_submenu_page('zopim_account_config', 'IM Integration', 'IM Chat Bots', 'access_zopim', 'zopim_instant_messaging', 'zopim_instant_messaging');
+	add_submenu_page('zopim_account_config', 'Dashboard', 'Dashboard', 'access_zopim', 'zopim_dashboard', 'zopim_dashboard');
 
 	//call register settings function
 	add_action( 'admin_init', 'register_zopim_plugin_settings' );
 }
-
-function check_zopimCode() {
-/*
-	//   if (get_option('zopimCode') == '' && ($_GET["page"] != "zopim_account_config")) {
-	if (ereg("zopim", $_GET["page"] )) {
-		//add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>" . sprintf( "Please <a href=\"%s\">input your Zopim account details</a>.", "admin.php?page=zopim_account_config" ) . "</p></div>";' ) );
-		add_action( 'admin_notices', create_function( '', 'echo "<div class=\"error\"><p>This Zopim plugin is a work in progress. We will launch on the 25th of January. Thank you for your interest.</p></div>";' ) );
-	}
- */
-	return false;
-}
-
-function zopim_loader() {
-	add_action( 'admin_menu', 'check_zopimCode' );
-}
-
-add_action( 'init', 'zopim_loader' );
 
 function zopim_about() {
 	echo "about";
