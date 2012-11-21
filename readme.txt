@@ -53,6 +53,7 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 
 = 1.2.3 =
 * Replaces old customize widget page with new theme editor
+* Remove customizewidget.php
 
 = 1.2.2 =
 * adds User Capability levels, allowing non-admins to use the plugin admin interface
