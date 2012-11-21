@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.2.2
+Version: 1.2.3
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
@@ -22,13 +22,13 @@ define('ZOPIM_THEMES_LIST',           "http://zopim.com/assets/dashboard/themes/
 define('ZOPIM_COLORS_LIST',           "http://zopim.com/assets/dashboard/themes/window/plugins-colors.txt");
 define('ZOPIM_LANGUAGES_URL',         "http://translate.zopim.com/projects/zopim/");
 define('ZOPIM_DASHBOARD_URL',         "http://dashboard.zopim.com/?iref=wp_plugin");
+define('ZOPIM_THEMEEDITOR_URL',       "http://dashboard.zopim.com/themeEditor/?iref=wp_plugin");
 define('ZOPIM_SMALL_LOGO',            "http://zopim.com/assets/branding/zopim.com/chatman/online.png");
 define('ZOPIM_IM_LOGOS',              "http://www.zopim.com/static/images/im/");
 define('ZOPIM_THEMES_URL',            "http://");
 define('ZOPIM_COLOURS_URL',           "http://");
 
 require_once dirname( __FILE__ ) . '/accountconfig.php';
-require_once dirname( __FILE__ ) . '/customizewidget.php';
 require_once dirname( __FILE__ ) . '/imintegration.php';
 
 function add_zopim_caps() {
@@ -119,6 +119,7 @@ function zopim_create_menu() {
 	// add_submenu_page('zopim_about', "About", "About", "access_zopim", 'zopim_about', 'zopim_about');
 	add_submenu_page('zopim_account_config', 'Account Configuration', 'Account Setup', 'access_zopim', 'zopim_account_config', 'zopim_account_config');
 	add_submenu_page('zopim_account_config', 'Customize Widget', 'Customize', 'access_zopim', 'zopim_customize_widget', 'zopim_customize_widget');
+
 	add_submenu_page('zopim_account_config', 'IM Integration', 'IM Chat Bots', 'access_zopim', 'zopim_instant_messaging', 'zopim_instant_messaging');
 	add_submenu_page('zopim_account_config', 'Dashboard', 'Dashboard', 'access_zopim', 'zopim_dashboard', 'zopim_dashboard');
 
@@ -130,9 +131,36 @@ function zopim_about() {
 	echo "about";
 }
 
+function zopim_resize_iframe($target) {
+
+?>
+<script>
+(function() {
+	var wpwrap = document.getElementById('wpwrap');
+	var ztarget = document.getElementById('<?php echo $target; ?>');
+	// window.addEventListener('resize', zopim_resize, false);
+	function zopim_resize() {
+		if (wpwrap && wpwrap.clientHeight) {
+			ztarget.height = Math.max(wpwrap.clientHeight - 110, 700);
+		}
+	}
+	zopim_resize();
+})()
+</script>
+
+<?php
+}
+
+function zopim_customize_widget() {
+	echo '<div id="dashboarddiv"><iframe id="themeEditor" src="'.ZOPIM_THEMEEDITOR_URL.'i" height=700 width=98% scrolling="no"></iframe></div>';
+	echo 'You may also <a href="'.ZOPIM_THEMEEDITOR_URL.'" target="customize" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the theme editor in a new window</a>.';
+	zopim_resize_iframe('themeEditor');
+}
+
 function zopim_dashboard() {
-	echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'i" height=700 width=98% scrolling="no"></iframe></div>      You may also <a href="'.ZOPIM_DASHBOARD_URL.'" target="_newWindow" onClick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.
-		';
+	echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'i" height=700 width=98% scrolling="no"></iframe></div>';
+	echo 'You may also <a href="'.ZOPIM_DASHBOARD_URL.'" target="dashboard" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.';
+	zopim_resize_iframe('dashboardiframe');
 }
 
 // Register the option settings we will be using
