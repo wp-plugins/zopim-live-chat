@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 3.1
 Tested up to: 3.4.2
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 
 Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 
