@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.2.3
+Version: 1.2.4
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
@@ -42,6 +42,7 @@ add_action( 'admin_init', 'add_zopim_caps');
 // We need some CSS to position the paragraph
 function zopimme() {
 	global $current_user, $zopimshown;
+	get_currentuserinfo();
 
 	$code = get_option('zopimCode');
 
@@ -58,28 +59,65 @@ d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
 _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
 $.src='//cdn.zopim.com/?".$code."';z.t=+new Date;$.
 type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-<!--End of Zopim Live Chat Script-->";
+</script>";
 
+	echo '<script>';
+	if (isset($current_user)):
+		$firstname = $current_user->display_name;
+		$useremail = $current_user->user_email;
+		if ($firstname!="" && $useremail != ""):
+			echo "\$zopim(function(){\$zopim.livechat.set({name: '$firstname', email: '$useremail'}); });";
+		endif;
+	endif;
+
+	echo zopim_get_widget_options();
+	echo '</script>';
+	echo "<!--End of Zopim Live Chat Script-->";
+}
+
+function zopim_get_widget_options() {
+	$opts = get_option('zopimWidgetOptions');
+	if ($opts) return stripslashes($opts);
+
+	$opts = zopim_old_plugin_settings();
+	update_option('zopimWidgetOptions', $opts);
+
+	$list = array(
+		'zopimLang',
+		'zopimPosition',
+		'zopimTheme',
+		'zopimColor',
+		'zopimUseGreetings',
+		'zopimUseBubble',
+		'zopimBubbleTitle',
+		'zopimBubbleText',
+		'zopimBubbleEnable',
+		'zopimHideOnOffline'
+	);
+
+	foreach ($list as $key):
+		delete_option($key);
+	endforeach;
+
+	if ($opts) return $opts;
+	else return '';
+}
+
+function zopim_old_plugin_settings() {
 	$theoptions = array();
+
 	if (get_option('zopimLang') != "" && get_option('zopimLang') != "--")
-	 $theoptions[] = " language: '".get_option('zopimLang')."'";
+		$theoptions[] = " language: '".get_option('zopimLang')."'";
 
-	if (isset($current_user) && get_option("zopimGetVisitorInfo") == "checked") {
-	 $ul = $current_user->data->first_name;
-	 $useremail = $current_user->data->user_email;
-	 if ($ul!="" && $useremail != "")
-		$theoptions[] = "name: '$ul', email: '$useremail'";
-	}
-
-	echo "\n<script type=\"text/javascript\">\n\$zopim( function() {";
+	$zopim_embed_opts = '';
+	$zopim_embed_opts .= "\$zopim( function() {";
 
 	if (count($theoptions) > 0)
-	 echo '$zopim.livechat.set({'.implode(", ", $theoptions)."});";
+		$zopim_embed_opts .= '$zopim.livechat.set({'.implode(", ", $theoptions)."});";
 
-	get_option('zopimPosition')    != "" && print("\n\$zopim.livechat.button.setPosition('".get_option('zopimPosition')."');");
-	get_option('zopimTheme')       != "" && print("\n\$zopim.livechat.window.setTheme('".get_option('zopimTheme')."');");
-	get_option('zopimColor')       != "" && print("\n\$zopim.livechat.window.setColor('".get_option('zopimColor')."');");
+	if (get_option('zopimPosition')) $zopim_embed_opts .= "\n\$zopim.livechat.button.setPosition('".get_option('zopimPosition')."');";
+	if (get_option('zopimTheme'))    $zopim_embed_opts .= "\n\$zopim.livechat.window.setTheme('".get_option('zopimTheme')."');";
+	if (get_option('zopimColor'))    $zopim_embed_opts .= "\n\$zopim.livechat.window.setColor('".get_option('zopimColor')."');";
 
 	if (get_option('zopimUseGreetings') == "zopimUseGreetings") {
 		if (get_option('zopimGreetings') != "") {
@@ -89,7 +127,7 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 				$greetings->$i->$j = str_replace("\r\n", "\\n", $greetings->$i->$j);
 				}
 			}
-			echo "\n\$zopim.livechat.setGreetings({
+			$zopim_embed_opts .= "\n\$zopim.livechat.setGreetings({
 'online' : ['".addslashes($greetings->online->bar)."', '".addslashes($greetings->online->window)."'],
 'offline': ['".addslashes($greetings->offline->bar)."', '".addslashes($greetings->offline->window)."'],
 'away'   : ['".addslashes($greetings->away->bar)."', '".addslashes($greetings->away->window)."']  });";
@@ -97,19 +135,22 @@ type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 	}
 
 	if (get_option('zopimUseBubble') == "zopimUseBubble") {
-		get_option('zopimBubbleTitle') != "" && print("\n\$zopim.livechat.bubble.setTitle('".addslashes(get_option('zopimBubbleTitle'))."');");
-		get_option('zopimBubbleText')  != "" && print("\n\$zopim.livechat.bubble.setText('".addslashes(get_option('zopimBubbleText'))."');");
+		if (get_option('zopimBubbleTitle')) $zopim_embed_opts .= "\n\$zopim.livechat.bubble.setTitle('".addslashes(get_option('zopimBubbleTitle'))."');";
+		if (get_option('zopimBubbleText'))  $zopim_embed_opts .= "\n\$zopim.livechat.bubble.setText('".addslashes(get_option('zopimBubbleText'))."');";
 	}
 
 	if (get_option('zopimBubbleEnable') == "show")
-		echo "\n\$zopim.livechat.bubble.show(true);";
+		$zopim_embed_opts .= "\n\$zopim.livechat.bubble.show(true);";
 	else if (get_option('zopimBubbleEnable') == "hide")
-		echo "\n\$zopim.livechat.bubble.hide(true);";
+		$zopim_embed_opts .= "\n\$zopim.livechat.bubble.hide(true);";
 
 	// this must be called last
 	if (get_option('zopimHideOnOffline') == "zopimHideOnOffline")
-	 echo "\n\$zopim.livechat.button.setHideWhenOffline(true);";
-	echo "\n})</script>";
+		$zopim_embed_opts .= "\n\$zopim.livechat.button.setHideWhenOffline(true);";
+
+	$zopim_embed_opts .= "\n})";
+	return $zopim_embed_opts;
+
 }
 
 function zopim_create_menu() {
@@ -158,6 +199,13 @@ function zopim_customize_widget() {
 }
 
 function zopim_dashboard() {
+	global $current_user;
+
+	if (isset($current_user)):
+		$useremail = $current_user->data->user_email;
+	endif;
+	// Get Blog's URL
+
 	echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'i" height=700 width=98% scrolling="no"></iframe></div>';
 	echo 'You may also <a href="'.ZOPIM_DASHBOARD_URL.'" target="dashboard" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.';
 	zopim_resize_iframe('dashboardiframe');
@@ -171,30 +219,7 @@ function register_zopim_plugin_settings() {
 	register_setting( 'zopim-settings-group', 'zopimUsername' );
 	register_setting( 'zopim-settings-group', 'zopimSalt' );
 	register_setting( 'zopim-settings-group', 'zopimUseSSL' );
-	// General Widget settings
-	register_setting( 'zopim-settings-group', 'zopimGetVisitorInfo' );
-	register_setting( 'zopim-settings-group', 'zopimLang' );
-	// Chat button settings
-	register_setting( 'zopim-settings-group', 'zopimPosition' );
-	register_setting( 'zopim-settings-group', 'zopimHideOnOffline' );
-	register_setting( 'zopim-settings-group', 'zopimBubbleTitle' );
-	register_setting( 'zopim-settings-group', 'zopimBubbleText' );
-	register_setting( 'zopim-settings-group', 'zopimBubbleEnable' );
-	register_setting( 'zopim-settings-group', 'zopimUseBubble' );
-	// Themes / Color
-	register_setting( 'zopim-settings-group', 'zopimColor' );
-	register_setting( 'zopim-settings-group', 'zopimTheme' );
-	// Message Settings
-	register_setting( 'zopim-settings-group', 'zopimGreetings' );
-	register_setting( 'zopim-settings-group', 'zopimUseGreetings' );
 
-	get_option('zopimCode')         == "" && update_option('zopimCode', "zopim");
-	get_option('zopimBubbleTitle')  == "" && update_option('zopimBubbleTitle', "Questions?");
-	get_option('zopimBubbleText')   == "" && update_option('zopimBubbleText', "Click here to chat with us!");
-	get_option('zopimBubbleEnable') == "" && update_option('zopimBubbleEnable', "checked");
-	get_option('zopimUseGreetings') == "" && update_option('zopimUseGreetings', "disabled");
-	get_option('zopimUseBubble')    == "" && update_option('zopimUseBubble', "disabled");
-	get_option('zopimGreetings')    == "" && update_option('zopimGreetings', '{"away":{"window":"If you leave a question or comment, our agents will be notified and will try to attend to you shortly =)","bar":"Click here to chat"},"offline":{"window":"We are offline, but if you leave your message and contact details, we will try to get back to you =)","bar":"Leave a message"},"online":{"window":"Leave a question or comment and our agents will try to attend to you shortly =)","bar":"Click here to chat"}}');
 }
 
 add_action('get_footer', 'zopimme');

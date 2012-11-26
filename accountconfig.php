@@ -115,8 +115,27 @@ function zopim_account_config() {
 <span style="float:right;"><a href="admin.php?page=zopim_account_config&action=deactivate">Deactivate</a></span>
 Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?></div>
 <br><p><br>You can <a href="admin.php?page=zopim_customize_widget">customize</a> the chat widget, <a href="admin.php?page=zopim_instant_messaging">relay messages</a> to your favourite IM client, or <a href="admin.php?page=zopim_dashboard">launch the dashboard</a> for advanced features.
-</div>
 
+
+<form method="post" action="admin.php?page=zopim_account_config">
+	<?php
+	if (isset($_POST['widget-options'])) {
+		$opts = $_POST['widget-options'];
+		update_option('zopimWidgetOptions', $opts);
+		echo '<i>Widget options updated.<br/></i>';
+	}
+
+	?>
+	<p>
+	Optional code for customization with Zopim API:
+	<br/>
+	<textarea name="widget-options" style="width:680px; height: 200px;"><?php echo esc_textarea(zopim_get_widget_options()); ?></textarea>
+	<br/>
+	<input type="submit" value="Update widget options" />
+	</p>
+</form>
+
+</div>
 <?php } else { ?>
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
 <?php if ($error && $error["auth"]) {
@@ -136,28 +155,28 @@ Congratulations on successfully installing the Zopim WordPress plugin! Activate 
 	<input type="hidden" name="action" value="login">
 	<table class="form-table">
 
-		  <tr valign="top">
-		  <th scope="row">Zopim Username (E-mail)</th>
-		  <td><input type="text" name="zopimUsername" value="<?php echo get_option('zopimUsername'); ?>" /></td>
-		  </tr>
+			<tr valign="top">
+			<th scope="row">Zopim Username (E-mail)</th>
+			<td><input type="text" name="zopimUsername" value="<?php echo get_option('zopimUsername'); ?>" /></td>
+			</tr>
 
-		  <tr valign="top">
-		  <th scope="row">Zopim Password</th>
-		  <td><input type="password" name="zopimPassword" value="<?php if (get_option('zopimSalt') != "") { echo "password"; }; ?>" /></td>
-		  </tr>
+			<tr valign="top">
+			<th scope="row">Zopim Password</th>
+			<td><input type="password" name="zopimPassword" value="<?php if (get_option('zopimSalt') != "") { echo "password"; }; ?>" /></td>
+			</tr>
 
-		  <tr valign="center">
-		  <th scope="row">Use SSL</th>
-		  <td><input type="checkbox" name="zopimUseSSL" value="zopimUseSSL" <?php if (get_option('zopimUseSSL') == "zopimUseSSL") { echo "checked='checked'"; } ?> /> uncheck this if you are unable to login</td>
-		  </tr>
+			<tr valign="center">
+			<th scope="row">Use SSL</th>
+			<td><input type="checkbox" name="zopimUseSSL" value="zopimUseSSL" <?php if (get_option('zopimUseSSL') == "zopimUseSSL") { echo "checked='checked'"; } ?> /> uncheck this if you are unable to login</td>
+			</tr>
 	 </table>
 		<br/>
 		The Zopim chat bar will displayed on your blog once your account is linked up.
 		<br/>
-	 <p class="submit">
-	 <input type="submit" class="button-primary" value="<?php _e('Link Up') ?>" />
-	 Don't have a zopim account? <a href="<?php echo ZOPIM_SIGNUP_REDIRECT_URL; ?>" target="_blank" data-popup="true">Sign up now</a>.
-	 </p>
+		<p class="submit">
+		<input type="submit" class="button-primary" value="<?php _e('Link Up') ?>" />
+		Don't have a zopim account? <a href="<?php echo ZOPIM_SIGNUP_REDIRECT_URL; ?>" target="_blank" data-popup="true">Sign up now</a>.
+		</p>
 
 </form>
 
