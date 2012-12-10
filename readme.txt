@@ -1,48 +1,84 @@
 === Zopim Live Chat ===
 Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
-Requires at least: 2.7
-Tested up to: 3.3.1
-Stable tag: 1.1.3
+Requires at least: 3.1
+Tested up to: 3.4.2
+Stable tag: 1.2.5
 
-Zopim is an award winning facebook-like chatbar built for websites. It connects website owners and visitors together via a cross-browser platform.
+Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 
 == Description ==
 
-Update: In Oct 2010, Zopim was nominated Asia.s Top 10 Web Apps and selected as Red Herring Asia Top 100 Finalists. Read about it here: <a href="http://blog.zopim.com/?p=681">http://blog.zopim.com/?p=681</a>
+Ever wondered how to chat with visitors to your website? With <a href="http://www.zopim.com/?utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bplugin">Zopim</a> Live Chat, they are just a click away!
 
-Build relationships with visitors to your website. They will be pleasantly surprised to know that a real person is there to respond to them.
+Using our <a href="http://blog.zopim.com/2010/10/28/awards-are-rolling-in/">award-winning</a> tool to respond instantly to visitors and engage them proactively. Live chat can’t be simpler with Zopim.
 
-* Know what your customers are looking at. See which product page they are currently viewing
+[youtube https://www.youtube.com/watch?v=tSRSn9hJU1c]
 
-* Let customers with questions reach you directly. Or proactively click on them to start a conversation
+Zopim Live Chat shows up as a chatbar docked at the bottom of your website. Visitors chat with you simply by clicking on the Zopim Chat Widget.
 
-* Reply to chats via any browser, or your favorite IM client. Chat from Gtalk, MSN, Yahoo! Messenger, AOL, and from Smart Phones that support mobile IM client.
+**What you can do with Zopim Live Chat:**
 
-**What does Zopim look like?**
-Zopim shows up as a chatbar docked to the bottom of your website. Visitors chat with you by clicking on the Zopim Chat Bar. 
+* Know what your visitors are looking at. See which product page they are currently viewing.
+* Let customers reach you directly. You can also proactively click on them to start a chat.
+* Reply to chats online or offline via any browser, or your favorite IM client.
 
-**3 Reasons to Use Zopim (& Not Anyone Else)**
+**Why Zopim Live Chat but not anyone else?**
 
-* Nice Interface, Great User Experience
+* A real customer-centric live chat tool that is loved by 50,000 businesses around the world.
+* Simple to setup and use.
+* Nice interface with fully customizable chat widget.
+* 24/7 technical support.
+* Chat widget available in more than 40 languages*.
 
-* One click deployment. So simple to setup and use, you.ll start loving it :)
+Just to name a few!
 
-* 16 hours online chat support even for free accounts . simply visit our website!
+**Some Geeky Facts**
 
-**Zopim works across major browsers and IM**
+* Work across major browsers ( Internet Explorer 6+, Firefox, Google Chrome, Opera, Safar) and IMs (Gtalk / MSN / Yahoo! Messenger / AIM).
+* Uptime averaged 99.8%.
+* New HTML5 dashboard.
+* iPhone application available.
+* Integration seamlessly with Uservoice, Salesforce, Highrise, Batchbook, Zendesk and more.
 
-* Internet Explorer 6+, Firefox, Google Chrome, Opera, Safari ...
+Love to know more about the product? Please visit our <a href="https://www.zopim.com/product">website</a>.
 
-* Gtalk / MSN / Yahoo! Messenger / AIM
+What are you waiting for? Download Zopim Live Chat plugin now and <a href="https://www.zopim.com/?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bsignup#signup">sign up here</a> for a free account!
 
-* iPhone, Blackberry & any other Smart Phones that supports mobile IM clients
-
-**See all languages available, lovingly translated by Zopim users (in alphabetical order)**
+**See languages available, lovingly translated by Zopim users (in alphabetical order)**
 
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+
+= 1.2.5 =
+* Enhancement to Theme Editor - now autoloads blog's url automatically
+
+= 1.2.4 =
+* Adds an optional widget settings box
+* Widget settings saved from old wordpress plugin will be migrated to the optional settings box
+* Visitor info uses new wp api and now enabled by default
+* Required Wordpress version bumped to 3.1
+
+= 1.2.3 =
+* Replaces old customize widget page with new theme editor
+* Remove customizewidget.php
+
+= 1.2.2 =
+* adds User Capability levels, allowing non-admins to use the plugin admin interface
+* Admins can use add the following code
+	$role = get_role( 'editor' ); $role->add_cap( 'access_zopim' );
+to their themes, or use the Members plugin (http://wordpress.org/extend/plugins/members/)
+to give roles the 'access_zopim' capability.
+
+= 1.2.1 =
+* Uses wordpress http api for better linkup support with multiple transports
+* Reduce name collisions in functions
+* Adds compatibility to premiumpress theme
+
+= 1.2.0 =
+* Signup process is now linked to zopim.com as per Wordpress guidelines.
+
 = 1.1.3 =
 * Update Zopim embed script
 * Add option to override dashboard settings for chat bubble text
@@ -140,24 +176,36 @@ Not at all! Zopim is a hosted livechat service. Simply configure the plugin and 
 Though designed to work on most browsers, Zopim works best in the following environment: IE 6 or later (PC), Firefox 2 or later (Mac, PC, or Linux), Safari 2 or later (Mac), Google Chrome (PC, Mac).
 
 = I managed to install the plugin but cannot link up to Zopim. Why? =
-Most likely PHP Curl is not installed or configured properly. Please request your server administrator to enable the PHP CURL extension (see http://www.php.net/manual/en/book.curl.php for details). 
+The plugin tries to link up with zopim by connecting using a few approaches including PHP Curl. If the outgoing connections are blocked (eg. by a firewall), please request your server administrator.
 
-Alternatively, you can also manually include the script in the footer file ("wp-content/themes/default/footer.php" in your wordpress installation). 
+Alternatively, you can also manually include the script in the footer file ("wp-content/themes/default/footer.php" in your wordpress installation).
 
 = Is it free to use? =
 
-The plugin comes with a free plan specially tailored for Wordpress users. Power users can purchase upgrade options anytime. 
+The plugin comes with a free plan specially tailored for Wordpress users. Power users can purchase upgrade options anytime.
+
+= How can I chat with more visitors at the same time? =
+
+You can easily do so by upgrade to a better plan. To find out more about the plans and features we offer, please visit https://www.zopim.com/pricing
 
 = Its just not working for me! HELP! =
 
-Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com or leave an email for us at wordpress@zopim.com and we will help you with installation. 
+Dont worry!! We are happy to assist! Just come on down to our site at http://www.zopim.com or leave an email for us at support@zopim.com and we will help you with installation.
 
 == Usage ==
 
-After enabling the plug in, head on to the widget customization page to change settings and integrate its look and feel to match your site. When done, enable it by visiting the account configuration page and completing the instant signup process. 
+After enabling the plug in, head on to the widget customization page to change settings and integrate its look and feel to match your site. When done, enable it by visiting the account configuration page and completing the instant signup process.
 
 == Installation ==
 
-*Server Requirements:* PHP4 or PHP5 with PHP Curl installed.
+*Server Requirements:* PHP4 or PHP5.
 
 *Wordpress versions:* Wordpress 2.7 and up.
+
+Step-by-step Guide:
+
+* Install plugin from WordPress directory and activate it.
+* Under Zopim Chat section, click on Account Setup to link up your Zopim account.
+* Customize the chat widget to your preference.
+* Navigate to IM Chat Bots to setup chat bots.
+* Finally, make full use of our intuitive Dashboard to manage your chat widget.
