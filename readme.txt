@@ -3,13 +3,13 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 3.1
 Tested up to: 3.4.2
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 
 Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 
 == Description ==
 
-Ever wondered how to chat with visitors to your website? With <a href="https://www.zopim.com/?iref=wp_plugin">Zopim</a> Live Chat, they are just a click away!
+Ever wondered how to chat with visitors to your website? With <a href="http://www.zopim.com/?utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bplugin">Zopim</a> Live Chat, they are just a click away!
 
 Using our <a href="http://blog.zopim.com/2010/10/28/awards-are-rolling-in/">award-winning</a> tool to respond instantly to visitors and engage them proactively. Live chat can’t be simpler with Zopim.
 
@@ -43,13 +43,16 @@ Just to name a few!
 
 Love to know more about the product? Please visit our <a href="https://www.zopim.com/product">website</a>.
 
-What are you waiting for? Download Zopim Live Chat plugin now and <a href="https://www.zopim.com/?iref=wordpress_plugin#signup">sign up here</a> for a free account!
+What are you waiting for? Download Zopim Live Chat plugin now and <a href="https://www.zopim.com/?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bsignup#signup">sign up here</a> for a free account!
 
 **See languages available, lovingly translated by Zopim users (in alphabetical order)**
 
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+
+= 1.2.5 =
+* Enhancement to Theme Editor - now autoloads blog's url automatically
 
 = 1.2.4 =
 * Adds an optional widget settings box

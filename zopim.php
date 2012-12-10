@@ -5,28 +5,25 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.2.4
+Version: 1.2.5
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
 define('ZOPIM_SCRIPT_DOMAIN',         "zopim.com");
 define('ZOPIM_BASE_URL',              "https://www.zopim.com/");
-define('ZOPIM_SIGNUP_REDIRECT_URL',   ZOPIM_BASE_URL."?iref=wp_plugin#signup");
+define('ZOPIM_SIGNUP_REDIRECT_URL',   ZOPIM_BASE_URL."?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=account%2Bsetup%2Bpage&utm_medium=link&utm_campaign=wp%2Bsignup2#signup");
 define('ZOPIM_GETACCOUNTDETAILS_URL', ZOPIM_BASE_URL."plugins/getAccountDetails");
 define('ZOPIM_SETDISPLAYNAME_URL',    ZOPIM_BASE_URL."plugins/setDisplayName");
 define('ZOPIM_IMINFO_URL',            ZOPIM_BASE_URL."plugins/getImSetupInfo");
 define('ZOPIM_IMREMOVE_URL',          ZOPIM_BASE_URL."plugins/removeImSetup");
 define('ZOPIM_LOGIN_URL',             ZOPIM_BASE_URL."plugins/login");
 define('ZOPIM_SIGNUP_URL',            ZOPIM_BASE_URL."plugins/createTrialAccount");
-define('ZOPIM_THEMES_LIST',           "http://zopim.com/assets/dashboard/themes/window/plugins-themes.txt");
-define('ZOPIM_COLORS_LIST',           "http://zopim.com/assets/dashboard/themes/window/plugins-colors.txt");
-define('ZOPIM_LANGUAGES_URL',         "http://translate.zopim.com/projects/zopim/");
-define('ZOPIM_DASHBOARD_URL',         "http://dashboard.zopim.com/?iref=wp_plugin");
-define('ZOPIM_THEMEEDITOR_URL',       "http://dashboard.zopim.com/themeEditor/?iref=wp_plugin");
+define('ZOPIM_DASHBOARD_URL',         "http://dashboard.zopim.com/?utm_source=wp&utm_medium=iframe&utm_campaign=wp%2Bdashboard");
+define('ZOPIM_DASHBOARD_LINK',        "http://dashboard.zopim.com/?utm_source=wp&utm_medium=link&utm_campaign=wp%2Bdashboard");
+define('ZOPIM_THEMEEDITOR_URL',       "http://dashboard.zopim.com/themeEditor/?utm_source=wp&utm_medium=iframe&utm_campaign=wp%2Bthemeditor");
+define('ZOPIM_THEMEEDITOR_LINK',      "http://dashboard.zopim.com/themeEditor/?utm_source=wp&utm_medium=link&utm_campaign=wp%2Bthemeeditor");
 define('ZOPIM_SMALL_LOGO',            "http://zopim.com/assets/branding/zopim.com/chatman/online.png");
 define('ZOPIM_IM_LOGOS',              "http://www.zopim.com/static/images/im/");
-define('ZOPIM_THEMES_URL',            "http://");
-define('ZOPIM_COLOURS_URL',           "http://");
 
 require_once dirname( __FILE__ ) . '/accountconfig.php';
 require_once dirname( __FILE__ ) . '/imintegration.php';
@@ -193,8 +190,15 @@ function zopim_resize_iframe($target) {
 }
 
 function zopim_customize_widget() {
-	echo '<div id="dashboarddiv"><iframe id="themeEditor" src="'.ZOPIM_THEMEEDITOR_URL.'i" height=700 width=98% scrolling="no"></iframe></div>';
-	echo 'You may also <a href="'.ZOPIM_THEMEEDITOR_URL.'" target="customize" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the theme editor in a new window</a>.';
+
+	$params = '';
+	$code = get_option('zopimCode');
+	if (!empty($code)) $params .= '&account_key=' . urlencode($code);
+
+	$params .= '&url=' . urlencode(get_site_option('siteurl'));
+
+	echo '<div id="dashboarddiv"><iframe id="themeEditor" src="'.ZOPIM_THEMEEDITOR_URL.$params.'" height=700 width=98% scrolling="no"></iframe></div>';
+	echo 'You may also <a href="'.ZOPIM_THEMEEDITOR_LINK.$params.'" target="customize" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the theme editor in a new window</a>.';
 	zopim_resize_iframe('themeEditor');
 }
 
@@ -206,8 +210,8 @@ function zopim_dashboard() {
 	endif;
 	// Get Blog's URL
 
-	echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'i" height=700 width=98% scrolling="no"></iframe></div>';
-	echo 'You may also <a href="'.ZOPIM_DASHBOARD_URL.'" target="dashboard" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.';
+	echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'" height=700 width=98% scrolling="no"></iframe></div>';
+	echo 'You may also <a href="'.ZOPIM_DASHBOARD_LINK.'" target="dashboard" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.';
 	zopim_resize_iframe('dashboardiframe');
 }
 
