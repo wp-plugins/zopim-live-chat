@@ -50,17 +50,16 @@ display: inline-block;
 					 1. Add the Control Bot to the IM Client of your choice.<br/><br/>
 
 	 <table class="clients" cellpadding="0" cellspacing="0">
-	 <tr><td align="center" width="160" class="first"><b>IM Cient</b></td><td class="first" width="200"><b>Chat Bot's Name</b></td></tr>
-	 <tr><td valign="center" align="center"><img src="<?php echo ZOPIM_IM_LOGOS ?>big/gtalk.png"></td><td><?php echo $iminfo->bots->gtalk; ?></td></tr>
-	 <tr><td valign="center" align="center"><img src="<?php echo ZOPIM_IM_LOGOS ?>big/msn.png"></td><td><?php echo $iminfo->bots->msn; ?></td></tr>
-	 <tr><td valign="center" align="center"><img src="<?php echo ZOPIM_IM_LOGOS ?>big/yahoo.png"></td><td><?php echo $iminfo->bots->yahoo; ?></td></tr>
-	 <tr><td valign="center" align="center"><img src="<?php echo ZOPIM_IM_LOGOS ?>big/aim.png"></td><td><?php echo $iminfo->bots->aim; ?></td></tr>
+	 <tr><td align="center" width="160" class="first"><b>IM Client</b></td><td class="first" width="200"><b>Chat Bot's Name</b></td></tr>
+	 <tr><td valign="center" align="center">Gtalk</td><td><?php echo $iminfo->bots->gtalk; ?></td></tr>
+	 <tr><td valign="center" align="center">Yahoo</td><td><?php echo $iminfo->bots->yahoo; ?></td></tr>
+	 <tr><td valign="center" align="center">AIM</td><td><?php echo $iminfo->bots->aim; ?></td></tr>
+	 <tr><td valign="center" align="center">Microsoft</td><td><?php echo $iminfo->bots->msn; ?></td></tr>
 	 </table>
-	 <div class="explain">For example, to use <b>MSN Live Messenger</b> to chat,<br/>add <b>zdctrlbot01@hotmail.com</b> to your MSN contact list.</div>
+	 <div class="explain">For example, to use <b>Gtalk</b> to chat,<br/>add <b><?php echo $iminfo->bots->gtalk; ?></b> to your Gtalk contact list.</div>
 		  </td>
 		  <td>
 		  2. Send the Control Bot this message:<br/><br/><input style="font-size:31px;color:#555;margin:0 0 5px;width:380px;" type="text" value="#setup <?php echo $iminfo->auth_key; ?>" id="box-content" readonly></input><br/>
-<input id="copy" value="Copy to Clipboard" type="button"></input>
 
 	<br/><br/>
 	3. Accept the invitations to add the Chat Bots.<br>
@@ -76,26 +75,6 @@ display: inline-block;
 		  </div>
 	 </div>
 </div>
-	<script type="text/javascript" src="http://www.zopim.com/static/ZeroClipboard.js"></script>
-	<script language="javascript">
-
-//create client
-	ZeroClipboard.setMoviePath('http://www.zopim.com/static/ZeroClipboard.swf');
-	var clip = new ZeroClipboard.Client();
-
-//event
-function $(id) { return document.getElementById(id); }
-
-clip.addEventListener('mousedown',function() {
-	clip.setText(document.getElementById('box-content').value);
-});
-clip.addEventListener('complete',function(client,text) {
-	window.status = 'copied: ' + text;
-});
-//glue it to the button
-clip.glue('copy');
-</script>
-
 <?php } else if (isset($iminfo->status)) { // integration already set up ?>
 
 	<h3><img src="<?php echo ZOPIM_IM_LOGOS.$iminfo->protocol; ?>.png"> Your <?php echo strtoupper($iminfo->protocol); ?> account is now linked with Zopim.</h3>
@@ -103,8 +82,10 @@ clip.glue('copy');
 You are connected using the account: <?php echo $iminfo->username; ?>. <br>
 Your status is now <b><?php echo $iminfo->status; ?></b>.<br><br>
 
+<!--
 <H3>Disable IM Integration</h3>
 You can <a href="admin.php?page=zopim_instant_messaging&remove=1">disable IM integration by clicking here</a>.
+-->
 
 <?php } else { // could not contact zopim to get the IM status
 
