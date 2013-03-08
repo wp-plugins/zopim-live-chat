@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
 Requires at least: 3.1
 Tested up to: 3.4.2
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 
 Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 
@@ -50,6 +50,9 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+
+= 1.2.6 =
+* Addresses XSS vulnerabilities concerns by removing ZeroClipboard
 
 = 1.2.5 =
 * Enhancement to Theme Editor - now autoloads blog's url automatically

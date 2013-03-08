@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.2.5
+Version: 1.2.6
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
