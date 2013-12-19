@@ -1,11 +1,15 @@
 === Zopim Live Chat ===
 Contributors: bencxr
-Tags: widget, plugin, sidebar, page, admin, enhancement, livechat, chat, widget
+Tags: chat, chat online, contact plugin, contact us, customer support, free chat, chat software, IM chat, 
+live chat, live chat inc, live chat services, live chat software, live chatting, live help, live support, 
+live web chat, livechat, live help, live support, olark, online chat, online support, php live chat, 
+snapengage, support software, website chat, wordpress chat, wordpress live chat, wordpress live chat plugin, 
+Zopim, Zopim live chat, banckle, clickdesk, click desk
 Requires at least: 3.1
 Tested up to: 3.4.2
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 
-Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
+Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans! Try it Free!
 
 == Description ==
 
@@ -21,14 +25,15 @@ Zopim Live Chat shows up as a chatbar docked at the bottom of your website. Visi
 
 * Know what your visitors are looking at. See which product page they are currently viewing.
 * Let customers reach you directly. You can also proactively click on them to start a chat.
-* Reply to chats online or offline via any browser, or your favorite IM client.
+* Chat with many visitors at the same time
 
 **Why Zopim Live Chat but not anyone else?**
 
 * A real customer-centric live chat tool that is loved by 50,000 businesses around the world.
+* Free version available.
 * Simple to setup and use.
-* Nice interface with fully customizable chat widget.
-* 24/7 technical support.
+* Fully customizable chat widget to match your website design.
+* User-friendly dashboard/ control panel to manage chats.
 * Chat widget available in more than 40 languages*.
 
 Just to name a few!
@@ -50,6 +55,15 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+
+= 1.2.7 =
+* Plugin will now embed v2 Widget
+* Improved Login Response
+* Classic Theme Editor remove to use Dashboard Widget Customization 
+Click on Appearance to make changes to your widget
+* Old Javascript API from v1 Widget may not work with v2 Widget
+Visit http://api.zopim.com/files/meshim/widget/controllers/LiveChatAPI-js.html for more details
+
 
 = 1.2.6 =
 * Addresses XSS vulnerabilities concerns by removing ZeroClipboard
@@ -163,10 +177,9 @@ to give roles the 'access_zopim' capability.
 == Screenshots ==
 
 1. Chat window on your website - active chat
-2. Chat widget on your website - minimized
-3. Account Configuration
-4. Styling and customiation
-5. Another nice screenshot on a 'virtual' monitor
+2. Account Configuration
+3. Styling and customiation
+4. Dashboard View
 
 == Frequently Asked Questions ==
 

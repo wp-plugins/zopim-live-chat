@@ -9,7 +9,6 @@ function zopim_account_config() {
 <div class="wrap">
 
 <?php
-
 	if (isset($_GET["action"]) && $_GET["action"]=="deactivate") {
 		update_option('zopimSalt', "");
 		update_option('zopimCode', "zopim");
@@ -25,11 +24,10 @@ function zopim_account_config() {
 
 		update_option('zopimUseSSL', $_POST["zopimUseSSL"]);
 
-		if ($_POST["zopimPassword"] != "password") {
+		if ($_POST["zopimUsername"] != "" && $_POST["zopimPassword"] != "") {
 
-			$logindata = array("email" => $_POST["zopimUsername"], "password" => $_POST["zopimPassword"]);
+			$logindata = array("email" => $_POST["zopimUsername"], "password" => $_POST["zopimPassword"]);			
 			$loginresult = json_to_array(zopim_post_request(ZOPIM_LOGIN_URL, $logindata));
-
 			if (isset($loginresult->error)) {
 				$error["login"] = "<b>Could not log in to Zopim. Please check your login details. If problem persists, try connecting without SSL enabled.</b>";
 				$gotologin = 1;
@@ -38,6 +36,7 @@ function zopim_account_config() {
 				update_option('zopimUsername', $_POST["zopimUsername"]);
 				update_option('zopimSalt', $loginresult->salt);
 				$account = getAccountDetails(get_option('zopimSalt'));
+				$editor = setEditor(get_option('zopimSalt'));				
 
 				if (isset($account)) {
 					update_option('zopimCode', $account->account_key);
@@ -51,6 +50,11 @@ function zopim_account_config() {
 				update_option('zopimSalt', "");
 				$error["login"] = "<b>Could not log in to Zopim. We were unable to contact Zopim servers. Please check with your server administrator to ensure that <a href='http://www.php.net/manual/en/book.curl.php'>PHP Curl</a> is installed and permissions are set correctly.</b>";
 			}
+		}
+		else {
+			update_option('zopimSalt', "wronglogin");
+			$gotologin = 1;
+			$error["login"] = "<b>Could not log in to Zopim. Please check your login details. If problem persists, try connecting without SSL enabled.</b>";
 		}
 	} else if (isset($_POST["action"]) && $_POST["action"]=="signup") {
 
@@ -81,7 +85,6 @@ function zopim_account_config() {
 		}
 	}
 
-	$error = NULL;
 	if (get_option('zopimCode') != "" && get_option('zopimCode') != "zopim") {
 
 		$accountDetails = getAccountDetails(get_option('zopimSalt'));
@@ -108,6 +111,7 @@ function zopim_account_config() {
 		} else {
 			$accountDetails->package_id .= " Package";
 		}
+
 ?>
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
 <br/>
@@ -143,8 +147,7 @@ Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?>
 	} else if ($message == "") { ?>
 Congratulations on successfully installing the Zopim WordPress plugin! Activate an account to start using Zopim Live Chat.<br>
 <br>
-<?php } else { echo $message; } ?>
-
+<?php } else { echo $message;} ?>
 <div id="existingform">
 	<div class="metabox-holder">
 		<div class="postbox">
