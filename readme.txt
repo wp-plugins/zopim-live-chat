@@ -29,7 +29,7 @@ Zopim Live Chat shows up as a chatbar docked at the bottom of your website. Visi
 
 **Why Zopim Live Chat but not anyone else?**
 
-* A real customer-centric live chat tool that is loved by 50,000 businesses around the world.
+* A real customer-centric live chat tool that is loved by 140,000 businesses around the world.
 * Free version available.
 * Simple to setup and use.
 * Fully customizable chat widget to match your website design.
@@ -223,5 +223,4 @@ Step-by-step Guide:
 * Install plugin from WordPress directory and activate it.
 * Under Zopim Chat section, click on Account Setup to link up your Zopim account.
 * Customize the chat widget to your preference.
-* Navigate to IM Chat Bots to setup chat bots.
 * Finally, make full use of our intuitive Dashboard to manage your chat widget.
