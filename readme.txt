@@ -1,4 +1,4 @@
-=== Zopim Live Chat ===
+﻿=== Zopim Live Chat ===
 Contributors: bencxr
 Tags: chat, chat online, contact plugin, contact us, customer support, free chat, chat software, IM chat, 
 live chat, live chat inc, live chat services, live chat software, live chatting, live help, live support, 
@@ -29,7 +29,7 @@ Zopim Live Chat shows up as a chatbar docked at the bottom of your website. Visi
 
 **Why Zopim Live Chat but not anyone else?**
 
-* A real customer-centric live chat tool that is loved by 50,000 businesses around the world.
+* A real customer-centric live chat tool that is loved by 140,000 businesses around the world.
 * Free version available.
 * Simple to setup and use.
 * Fully customizable chat widget to match your website design.
