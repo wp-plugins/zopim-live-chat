@@ -6,8 +6,8 @@ live web chat, livechat, live help, live support, olark, online chat, online sup
 snapengage, support software, website chat, wordpress chat, wordpress live chat, wordpress live chat plugin, 
 Zopim, Zopim live chat, banckle, clickdesk, click desk
 Requires at least: 3.1
-Tested up to: 3.4.2
-Stable tag: 1.2.7
+Tested up to: 3.8.1
+Stable tag: 1.2.8
 
 Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans! Try it Free!
 
@@ -40,7 +40,7 @@ Just to name a few!
 
 **Some Geeky Facts**
 
-* Work across major browsers ( Internet Explorer 6+, Firefox, Google Chrome, Opera, Safar) and IMs (Gtalk / MSN / Yahoo! Messenger / AIM).
+* Work across major browsers (Internet Explorer 6+, Firefox, Google Chrome, Opera, Safari).
 * Uptime averaged 99.8%.
 * New HTML5 dashboard.
 * iPhone application available.
@@ -55,6 +55,9 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+= 1.2.8 =
+* Due to breaking changes in many consumer IM clients, we will no longer be supporting IM Chat Bots (AIM, Google Talk, Skype, Yahoo Messenger or MSN)
+* Customize and Dashboard will now open in a new window instead of iframe
 
 = 1.2.7 =
 * Plugin will now embed v2 Widget
@@ -63,7 +66,6 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 Click on Appearance to make changes to your widget
 * Old Javascript API from v1 Widget may not work with v2 Widget
 Visit http://api.zopim.com/files/meshim/widget/controllers/LiveChatAPI-js.html for more details
-
 
 = 1.2.6 =
 * Addresses XSS vulnerabilities concerns by removing ZeroClipboard
