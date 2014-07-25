@@ -1,5 +1,23 @@
+<style type="text/css">
+	.btn_orange {
+		display: inline-block;
+		width: 150px;
+		padding: 10px 0px;
+		background: #F38313;
+		color: #fff !important;
+		border-radius: 5px;
+		font-weight: 700;
+		font-style: normal;
+		font-size: 14px;
+		border: none;
+		text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2);
+		text-decoration: none;
+		text-align: center;
+		border: 1px solid #E37A13;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);		
+	}
+</style>
 <?php
-
 // Settings page in the admin panel
 function zopim_account_config() {
 	global $usernameToCodeURL, $languagesURL, $current_user;
@@ -118,7 +136,9 @@ function zopim_account_config() {
 <div style="background:#FFFEEB;padding:25px;border:1px solid #eee;">
 <span style="float:right;"><a href="admin.php?page=zopim_account_config&action=deactivate">Deactivate</a></span>
 Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?></div>
-<br><p><br>You can <a href="admin.php?page=zopim_customize_widget">customize</a> the chat widget, or <a href="admin.php?page=zopim_dashboard">launch the dashboard</a> for advanced features.
+<!--<br><p><br>You can <a href="admin.php?page=zopim_customize_widget">customize</a> the chat widget, or <a href="admin.php?page=zopim_dashboard">launch the dashboard</a> for advanced features.-->
+<br><br>To start using Zopim chat, launch our dashboard for access to all features, including widget customization!
+<br><br><a href="<?php echo ZOPIM_DASHBOARD_LINK."&username=".get_option('zopimUsername'); ?>" style="text-decoration:none;" target="_blank" data-popup="true"><div class="btn_orange">Launch Dashboard</div></a>&nbsp;&nbsp;(This will open up a new browser tab)
 
 
 <form method="post" action="admin.php?page=zopim_account_config">
@@ -145,13 +165,13 @@ Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?>
 <?php if ($error && $error["auth"]) {
 	echo $error["auth"];
 	} else if ($message == "") { ?>
-Congratulations on successfully installing the Zopim WordPress plugin! Activate an account to start using Zopim Live Chat.<br>
+Congratulations on successfully installing the Zopim WordPress plugin!<br>
 <br>
 <?php } else { echo $message;} ?>
 <div id="existingform">
 	<div class="metabox-holder">
 		<div class="postbox">
-			<h3 class="hndle"><span>Link up to your Zopim account</span></h3>
+			<h3 class="hndle"><span>Link up with your Zopim account</span></h3>
 			<div style="padding:10px;">
 <?php if (isset($error) && isset($error["login"])) { echo $error["login"]; } ?>
 <form method="post" action="admin.php?page=zopim_account_config">
@@ -174,11 +194,11 @@ Congratulations on successfully installing the Zopim WordPress plugin! Activate 
 			</tr>
 	 </table>
 		<br/>
-		The Zopim chat bar will displayed on your blog once your account is linked up.
+		The Zopim chat widget will display on your blog after your account is linked up.
 		<br/>
 		<p class="submit">
 		<input type="submit" class="button-primary" value="<?php _e('Link Up') ?>" />
-		Don't have a zopim account? <a href="<?php echo ZOPIM_SIGNUP_REDIRECT_URL; ?>" target="_blank" data-popup="true">Sign up now</a>.
+		&nbsp;Don't have a zopim account? <a href="<?php echo ZOPIM_SIGNUP_REDIRECT_URL; ?>" target="_blank" data-popup="true">Sign up now</a>.
 		</p>
 
 </form>

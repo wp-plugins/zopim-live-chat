@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.2.9
+Version: 1.3.0
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
@@ -17,10 +17,7 @@ define('ZOPIM_SETDISPLAYNAME_URL',    ZOPIM_BASE_URL."plugins/setDisplayName");
 define('ZOPIM_SETEDITOR_URL',    	  ZOPIM_BASE_URL."plugins/setEditor");
 define('ZOPIM_LOGIN_URL',             ZOPIM_BASE_URL."plugins/login");
 define('ZOPIM_SIGNUP_URL',            ZOPIM_BASE_URL."plugins/createTrialAccount");
-define('ZOPIM_DASHBOARD_URL',         "http://dashboard.zopim.com/?utm_source=wp&utm_medium=iframe&utm_campaign=wp%2Bdashboard");
-define('ZOPIM_DASHBOARD_LINK',        "http://dashboard.zopim.com/?utm_source=wp&utm_medium=link&utm_campaign=wp%2Bdashboard");
-define('ZOPIM_THEMEEDITOR_URL',       "http://dashboard.zopim.com/#Widget/appearance");
-define('ZOPIM_THEMEEDITOR_LINK',      "http://dashboard.zopim.com/#Widget/appearance");
+define('ZOPIM_DASHBOARD_LINK',        "https://dashboard.zopim.com/?utm_source=wp&utm_medium=link&utm_campaign=wp%2Bdashboard");
 define('ZOPIM_SMALL_LOGO',            "http://zopim.com/assets/branding/zopim.com/chatman/online.png");
 
 require_once dirname( __FILE__ ) . '/accountconfig.php';
@@ -39,8 +36,8 @@ function zopimme() {
 	get_currentuserinfo();
 
 	$code = get_option('zopimCode');	
-
-	if (($code == "" || $code=="zopim") && (!preg_match("/zopim/", $_GET["page"]))&& (!preg_match("/zopim/", $_SERVER["SERVER_NAME"]))) { return; }
+	
+	if ( ( $code == "" || $code == "zopim" ) && ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_GET['page'] ) ) && ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_SERVER["SERVER_NAME"] ) ) ) { return; }
 
 	// dont show this more than once
 	if (isset($zopimshown) && $zopimshown == 1) { return; }
@@ -74,7 +71,7 @@ function zopim_get_widget_options() {
 	if ($opts) return stripslashes($opts);
 
 	//$opts = zopim_old_plugin_settings();
-	$zopim_embed_opts .= "\$zopim( function() {";
+	$zopim_embed_opts = "\$zopim( function() {";
 	$zopim_embed_opts .= "\n})";
 	$opts = $zopim_embed_opts;
 
@@ -155,62 +152,12 @@ function zopim_old_plugin_settings() {
 function zopim_create_menu() {
 	//create new top-level menu
 	add_menu_page('Account Configuration', 'Zopim Chat', 'access_zopim', 'zopim_account_config', 'zopim_account_config', ZOPIM_SMALL_LOGO);
-
-	// add_submenu_page('zopim_about', "About", "About", "access_zopim", 'zopim_about', 'zopim_about');
-	add_submenu_page('zopim_account_config', 'Account Configuration', 'Account Setup', 'access_zopim', 'zopim_account_config', 'zopim_account_config');
-	add_submenu_page('zopim_account_config', 'Customize Widget', 'Customize', 'access_zopim', 'zopim_customize_widget', 'zopim_customize_widget');
-	add_submenu_page('zopim_account_config', 'Dashboard', 'Dashboard', 'access_zopim', 'zopim_dashboard', 'zopim_dashboard');
-
 	//call register settings function
 	add_action( 'admin_init', 'register_zopim_plugin_settings' );
 }
 
 function zopim_about() {
 	echo "about";
-}
-
-function zopim_resize_iframe($target) {
-
-?>
-<script>
-(function() {
-	var wpwrap = document.getElementById('wpwrap');
-	var ztarget = document.getElementById('<?php echo $target; ?>');
-	// window.addEventListener('resize', zopim_resize, false);
-	function zopim_resize() {
-		if (wpwrap && wpwrap.clientHeight) {
-			ztarget.height = Math.max(wpwrap.clientHeight - 110, 700);
-		}
-	}
-	zopim_resize();
-})()
-</script>
-
-<?php
-}
-
-function zopim_customize_widget() {
-
-	$params = '';
-	$code = get_option('zopimCode');
-	//if (!empty($code)) $params .= '&account_key=' . urlencode($code);	
-	//$params .= '&url=' . urlencode(get_site_option('siteurl'));
-	echo '<div id="dashboarddiv" style="overflow:hidden;"><iframe id="dashboard-widget" src="'.ZOPIM_THEMEEDITOR_URL.'" height=700 width=110% scrolling="no" style="margin-left:-180px;"></iframe></div>';
-	echo 'You may also <a href="'.ZOPIM_THEMEEDITOR_LINK.$params.'" target="customize" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the theme editor in a new window</a>.';
-	zopim_resize_iframe('dashboard-widget');
-}
-
-function zopim_dashboard() {
-	global $current_user;
-
-	if (isset($current_user)):
-		$useremail = $current_user->data->user_email;
-	endif;
-	// Get Blog's URL
-
-	echo '<div id="dashboarddiv"><iframe id="dashboardiframe" src="'.ZOPIM_DASHBOARD_URL.'" height=700 width=98% scrolling="no"></iframe></div>';
-	echo 'You may also <a href="'.ZOPIM_DASHBOARD_LINK.'" target="dashboard" onclick="javascript:document.getElementById(\'dashboarddiv\').innerHTML=\'\'; ">access the dashboard in a new window</a>.';
-	zopim_resize_iframe('dashboardiframe');
 }
 
 // Register the option settings we will be using

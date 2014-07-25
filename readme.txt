@@ -1,52 +1,45 @@
 === Zopim Live Chat ===
 Contributors: bencxr
-Tags: chat, chat online, contact plugin, contact us, customer support, free chat, chat software, IM chat, 
-live chat, live chat inc, live chat services, live chat software, live chatting, live help, live support, 
-live web chat, livechat, live help, live support, olark, online chat, online support, php live chat, 
-snapengage, support software, website chat, wordpress chat, wordpress live chat, wordpress live chat plugin, 
-Zopim, Zopim live chat, banckle, clickdesk, click desk
+Tags: chat, chat online, contact plugin, contact us, customer support, free chat, chat software, IM chat, live chat, live chat inc, live chat services, live chat software, live chatting, live help, live support, live web chat, livechat, live help, live support, olark, online chat, online support, php live chat, snapengage, support software, website chat, wordpress chat, wordpress live chat, wordpress live chat plugin, Zopim, zendesk, Zopim live chat, banckle, clickdesk, click desk
 Requires at least: 3.1
 Tested up to: 3.8.1
-Stable tag: 1.2.9
+Stable tag: 1.3.0
 
-Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans! Try it Free!
+Zopim lets you monitor and chat with visitors surfing your store in real-time. Impress them personally and ease them into their purchase.
 
 == Description ==
 
-Ever wondered how to chat with visitors to your website? With <a href="http://www.zopim.com/?utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bplugin">Zopim</a> Live Chat, they are just a click away!
+Did you know that 83% of consumers need some kind of customer support when making an online purchase? And 45% of customers abandon an online transaction if their questions or concerns are not addressed quickly.
 
-Using our <a href="http://blog.zopim.com/2010/10/28/awards-are-rolling-in/">award-winning</a> tool to respond instantly to visitors and engage them proactively. Live chat can’t be simpler with Zopim.
+Businesses that interact with potential customers online are better placed to build a connection and increase their revenues. The Zopim live chat app will let you answer your customer’s questions in real time and ease them into a purchase.
 
 [youtube https://www.youtube.com/watch?v=tSRSn9hJU1c]
 
-Zopim Live Chat shows up as a chatbar docked at the bottom of your website. Visitors chat with you simply by clicking on the Zopim Chat Widget.
+With Zopim Live Chat, visitors to your website will be able to chat directly with you through the widget and you can manage multiple conversations through the online Dashboard.
 
-**What you can do with Zopim Live Chat:**
+**Key Features**
 
-* Know what your visitors are looking at. See which product page they are currently viewing.
-* Let customers reach you directly. You can also proactively click on them to start a chat.
-* Chat with many visitors at the same time
+* **Mobile Optimized:** Your customers can chat with you from any device using our mobile optimized chat widget
+* **Proactive Chat:** Rather than chatting with every single person yourself, you can increase the chances of high value engagement (and more sales) by using Triggers to automatically reach every visitor
+* **Advanced Analytics:** Our analytics dashboard lets you monitor visitor flow, usage patterns, and lets you jump in whenever a customer might need help
 
-**Why Zopim Live Chat but not anyone else?**
+**What makes Zopim the best choice for live chat?**
 
-* A real customer-centric live chat tool that is loved by 140,000 businesses around the world.
-* Free version available.
-* Simple to setup and use.
-* Fully customizable chat widget to match your website design.
-* User-friendly dashboard/ control panel to manage chats.
-* Chat widget available in more than 40 languages*.
-
-Just to name a few!
+* We’re the most popular live chat provider in the world - loved by over 150,000 businesses
+* A simple and highly customizable chat widget to complement your website and taste
+* User friendly dashboard lets you monitor visitor activity and manage chats
+* 24 hour live chat support from our trained experts on any weekday (visit Zopim.com)
+* Available in over 40 languages
 
 **Some Geeky Facts**
 
 * Work across major browsers (Internet Explorer 6+, Firefox, Google Chrome, Opera, Safari).
-* Uptime averaged 99.8%.
-* New HTML5 dashboard.
-* iPhone application available.
-* Integration seamlessly with Uservoice, Salesforce, Highrise, Batchbook, Zendesk and more.
+* Average uptime is 99.8%.
+* HTML5 dashboard
+* iPhone, Android, and BlackBerry apps
+* Integrates seamlessly with UserVoice, Salesforce, Highrise, Batchbook, Zendesk, vTiger and many more.
 
-Love to know more about the product? Please visit our <a href="https://www.zopim.com/product">website</a>.
+Should you need any assistance, feel free to chat with our customer advocates on www.zopim.com or email us at support@zopim.com
 
 What are you waiting for? Download Zopim Live Chat plugin now and <a href="https://www.zopim.com/?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bsignup#signup">sign up here</a> for a free account!
 
@@ -55,6 +48,13 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+= 1.3.0 =
+* Removed iframe Capability from plugin
+* Removed Account Configuration, Customize and Dashboard sub-menu pages
+* Added Launch Dashboard link to open new browser tab to access Dashboard
+* Minor Code Fixes
+
+
 = 1.2.9 =
 * Revert back to iframe Customize and Dashboard instead of opening new window
 * In PHP 5.3, ereg is deprecated, updated to use preg_match
@@ -183,9 +183,10 @@ to give roles the 'access_zopim' capability.
 == Screenshots ==
 
 1. Chat window on your website - active chat
-2. Account Configuration
-3. Styling and customiation
-4. Dashboard View
+2. Account Configuration - Link Up
+3. Account Configuration - Linked Up with Launch Dashboard
+4. Dashboard View - Open new browser tab
+5. Widget Customization from Dashboard 
 
 == Frequently Asked Questions ==
 
