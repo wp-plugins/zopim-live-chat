@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.3.1
+Version: 1.3.2
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
@@ -22,13 +22,19 @@ define('ZOPIM_SMALL_LOGO',            "http://zopim.com/assets/branding/zopim.co
 
 require_once dirname( __FILE__ ) . '/accountconfig.php';
 
+
+function load_zopim_style() {	
+	wp_register_style('zopim_style', plugins_url('zopim.css', __FILE__));
+	wp_enqueue_style('zopim_style');
+}
+
 function add_zopim_caps() {
 	$role = get_role( 'administrator' );
 	$role->add_cap( 'access_zopim' );
 }
 
+add_action('admin_enqueue_scripts', 'load_zopim_style');
 add_action( 'admin_init', 'add_zopim_caps');
-
 
 // We need some CSS to position the paragraph
 function zopimme() {
