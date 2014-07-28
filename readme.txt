@@ -3,7 +3,7 @@ Contributors: bencxr
 Tags: chat, chat online, contact plugin, contact us, customer support, free chat, chat software, IM chat, live chat, live chat inc, live chat services, live chat software, live chatting, live help, live support, live web chat, livechat, live help, live support, olark, online chat, online support, php live chat, snapengage, support software, website chat, wordpress chat, wordpress live chat, wordpress live chat plugin, Zopim, zendesk, Zopim live chat, banckle, clickdesk, click desk
 Requires at least: 3.1
 Tested up to: 3.8.1
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 
 Zopim lets you monitor and chat with visitors surfing your store in real-time. Impress them personally and ease them into their purchase.
 
@@ -48,6 +48,10 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+= 1.3.1 =
+* Added admin_print_styles to custom css
+* Changed button css name to a non-generic name
+
 = 1.3.0 =
 * Removed iframe Capability from plugin
 * Removed Account Configuration, Customize and Dashboard sub-menu pages
@@ -209,7 +213,7 @@ The plugin comes with a free plan specially tailored for Wordpress users. Power 
 
 = How can I chat with more visitors at the same time? =
 
-You can easily do so by upgrade to a better plan. To find out more about the plans and features we offer, please visit https://www.zopim.com/pricing
+You can easily do so by upgrading to a better plan. To find out more about the plans and features we offer, please visit https://www.zopim.com/pricing
 
 = Its just not working for me! HELP! =
 
