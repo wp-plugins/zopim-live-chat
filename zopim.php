@@ -43,7 +43,7 @@ function zopimme() {
 
 	$code = get_option('zopimCode');	
 	
-	if ( ( $code == "" || $code == "zopim" ) && ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_GET['page'] ) ) && ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_SERVER["SERVER_NAME"] ) ) ) { return; }
+	if ( ( $code == "" || $code == "zopim" ) || ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_GET['page'] ) ) && ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_SERVER["SERVER_NAME"] ) ) ) { return; }
 
 	// dont show this more than once
 	if (isset($zopimshown) && $zopimshown == 1) { return; }
