@@ -116,7 +116,7 @@ function zopim_account_config() {
 <br/>
 <div style="background:#FFFEEB;padding:25px;border:1px solid #eee;">
 <span style="float:right;"><a href="admin.php?page=zopim_account_config&action=deactivate">Deactivate</a></span>
-Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?></div>
+Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?></b> <div style="display:inline-block;margin-left:5px;background:#444;color:#fff;font-size:10px;text-transform:uppercase;padding:3px 8px;-moz-border-radius:5px;-webkit-border-radius:5px;"><?php echo ucwords($accountDetails->package_id); ?></div>
 <!--<br><p><br>You can <a href="admin.php?page=zopim_customize_widget">customize</a> the chat widget, or <a href="admin.php?page=zopim_dashboard">launch the dashboard</a> for advanced features.-->
 <br><br>To start using Zopim chat, launch our dashboard for access to all features, including widget customization!
 <br><br><a href="<?php echo ZOPIM_DASHBOARD_LINK."&username=".get_option('zopimUsername'); ?>" style="text-decoration:none;" target="_blank" data-popup="true"><div class="zopim_btn_orange">Launch Dashboard</div></a>&nbsp;&nbsp;(This will open up a new browser tab)

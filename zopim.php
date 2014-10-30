@@ -5,7 +5,7 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.3.3
+Version: 1.3.4
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
@@ -18,7 +18,7 @@ define('ZOPIM_SETEDITOR_URL',    	  ZOPIM_BASE_URL."plugins/setEditor");
 define('ZOPIM_LOGIN_URL',             ZOPIM_BASE_URL."plugins/login");
 define('ZOPIM_SIGNUP_URL',            ZOPIM_BASE_URL."plugins/createTrialAccount");
 define('ZOPIM_DASHBOARD_LINK',        "https://dashboard.zopim.com/?utm_source=wp&utm_medium=link&utm_campaign=wp%2Bdashboard");
-define('ZOPIM_SMALL_LOGO',            "http://zopim.com/assets/branding/zopim.com/chatman/online.png");
+define('ZOPIM_SMALL_LOGO',            "https://dashboard.zopim.com/assets/branding/zopim.com/chatman/online.png");
 
 require_once dirname( __FILE__ ) . '/accountconfig.php';
 
@@ -41,14 +41,13 @@ function zopimme() {
 	global $current_user, $zopimshown;
 	get_currentuserinfo();
 
-	$code = get_option('zopimCode');	
-	
-	if ( ( $code == "" || $code == "zopim" ) || ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_GET['page'] ) ) && ( isset( $_GET['page'] ) && ! preg_match( "/zopim/", $_SERVER["SERVER_NAME"] ) ) ) { return; }
+	$code = get_option('zopimCode');
+
+	if ( ( $code == "" || $code == "zopim" ) && ( !preg_match( "/zopim/", $_GET['page'] ) ) && ( !preg_match( "/zopim/", $_SERVER["SERVER_NAME"] ) ) ) { return; }
 
 	// dont show this more than once
 	if (isset($zopimshown) && $zopimshown == 1) { return; }
 	$zopimshown = 1;
-
 	echo "<!--Start of Zopim Live Chat Script-->
 <script type=\"text/javascript\">
 window.\$zopim||(function(d,s){var z=\$zopim=function(c){z._.push(c)},$=z.s=
