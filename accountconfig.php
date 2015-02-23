@@ -1,18 +1,10 @@
-<script type="text/javascript">
-	function animateButton() {		
-		document.getElementById("linkup").className += " animate";
-	}
-</script>
-
 <?php
 // Settings page in the admin panel
 function zopim_account_config() {
 	global $usernameToCodeURL, $languagesURL, $current_user;
 
 ?>
-
 <div class="wrap">
-
 <?php
 	if (isset($_GET["action"]) && $_GET["action"]=="deactivate") {
 		update_option('zopimSalt', "");
