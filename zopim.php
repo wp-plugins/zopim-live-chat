@@ -5,16 +5,17 @@ Plugin Name: Zopim Widget
 Plugin URI: http://www.zopim.com/?iref=wp_plugin
 Description: Zopim is an award winning chat solution that helps website owners to engage their visitors and convert customers into fans!
 Author: Zopim
-Version: 1.3.4
+Version: 1.3.5
 Author URI: http://www.zopim.com/?iref=wp_plugin
 */
 
-define('ZOPIM_SCRIPT_DOMAIN',         "zopim.com");
+define('VERSION_NUMBER',              "1.3.5");
 define('ZOPIM_BASE_URL',              "https://www.zopim.com/");
-define('ZOPIM_SIGNUP_REDIRECT_URL',   ZOPIM_BASE_URL."?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=account%2Bsetup%2Bpage&utm_medium=link&utm_campaign=wp%2Bsignup2#signup");
+define('ZOPIM_ACCOUNT_URL',           "https://account.zopim.com/");
+define('ZOPIM_SIGNUP_REDIRECT_URL',   ZOPIM_ACCOUNT_URL."?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=account%2Bsetup%2Bpage&utm_medium=link&utm_campaign=wp%2Bsignup2#signup");
 define('ZOPIM_GETACCOUNTDETAILS_URL', ZOPIM_BASE_URL."plugins/getAccountDetails");
 define('ZOPIM_SETDISPLAYNAME_URL',    ZOPIM_BASE_URL."plugins/setDisplayName");
-define('ZOPIM_SETEDITOR_URL',    	  ZOPIM_BASE_URL."plugins/setEditor");
+define('ZOPIM_SETEDITOR_URL',         ZOPIM_BASE_URL."plugins/setEditor");
 define('ZOPIM_LOGIN_URL',             ZOPIM_BASE_URL."plugins/login");
 define('ZOPIM_SIGNUP_URL',            ZOPIM_BASE_URL."plugins/createTrialAccount");
 define('ZOPIM_DASHBOARD_LINK',        "https://dashboard.zopim.com/?utm_source=wp&utm_medium=link&utm_campaign=wp%2Bdashboard");
@@ -34,7 +35,7 @@ function add_zopim_caps() {
 }
 
 add_action('admin_enqueue_scripts', 'load_zopim_style');
-add_action( 'admin_init', 'add_zopim_caps');
+add_action('admin_init', 'add_zopim_caps');
 
 // We need some CSS to position the paragraph
 function zopimme() {
@@ -43,12 +44,14 @@ function zopimme() {
 
 	$code = get_option('zopimCode');
 
-	if ( ( $code == "" || $code == "zopim" ) && ( !preg_match( "/zopim/", $_GET['page'] ) ) && ( !preg_match( "/zopim/", $_SERVER["SERVER_NAME"] ) ) ) { return; }
+	if ( ( $code == "" || $code == "zopim" ) && ( !isset($_GET['page']) && !preg_match( "/zopim/", $_GET['page'] ) ) && ( !preg_match( "/zopim/", $_SERVER["SERVER_NAME"] ) ) ) { return; }
 
 	// dont show this more than once
 	if (isset($zopimshown) && $zopimshown == 1) { return; }
 	$zopimshown = 1;
-	echo "<!--Start of Zopim Live Chat Script-->
+
+	echo "<!--Embed from Zopim Live Chat Wordpress Plugin v".VERSION_NUMBER."-->
+<!--Start of Zopim Live Chat Script-->
 <script type=\"text/javascript\">
 window.\$zopim||(function(d,s){var z=\$zopim=function(c){z._.push(c)},$=z.s=
 d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
@@ -158,11 +161,7 @@ function zopim_create_menu() {
 	//create new top-level menu
 	add_menu_page('Account Configuration', 'Zopim Chat', 'access_zopim', 'zopim_account_config', 'zopim_account_config', ZOPIM_SMALL_LOGO);
 	//call register settings function
-	add_action( 'admin_init', 'register_zopim_plugin_settings' );
-}
-
-function zopim_about() {
-	echo "about";
+	add_action('admin_init', 'register_zopim_plugin_settings' );
 }
 
 // Register the option settings we will be using
@@ -172,7 +171,6 @@ function register_zopim_plugin_settings() {
 	register_setting( 'zopim-settings-group', 'zopimCode' );
 	register_setting( 'zopim-settings-group', 'zopimUsername' );
 	register_setting( 'zopim-settings-group', 'zopimSalt' );
-	register_setting( 'zopim-settings-group', 'zopimUseSSL' );
 
 }
 
@@ -180,13 +178,9 @@ add_action('get_footer', 'zopimme');
 // create custom plugin settings menu
 add_action('admin_menu', 'zopim_create_menu');
 
-function zopim_post_request($url, $_data, $optional_headers = null)
-{
-	if (get_option('zopimUseSSL') != "zopimUseSSL")
-		$url = str_replace("https", "http", $url);
-	
+function zopim_post_request($url, $_data, $optional_headers = null) {
 	$args = array('body' => $_data);
-	$response = wp_remote_post( $url, $args );	
+	$response = wp_remote_post( $url, $args );
 	return $response['body'];
 }
 

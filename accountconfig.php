@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	function animateButton() {		
+		document.getElementById("linkup").className += " animate";
+	}
+</script>
+
 <?php
 // Settings page in the admin panel
 function zopim_account_config() {
@@ -17,18 +23,13 @@ function zopim_account_config() {
 	$authenticated = "";
 
 	if (isset($_POST["action"]) && $_POST["action"]=="login") {
-		if (!isset($_POST["zopimUseSSL"]) || $_POST["zopimUseSSL"] == '') {
-			$_POST["zopimUseSSL"] = "nossl";
-		}
-
-		update_option('zopimUseSSL', $_POST["zopimUseSSL"]);
 
 		if ($_POST["zopimUsername"] != "" && $_POST["zopimPassword"] != "") {
-
 			$logindata = array("email" => $_POST["zopimUsername"], "password" => $_POST["zopimPassword"]);			
 			$loginresult = json_to_array(zopim_post_request(ZOPIM_LOGIN_URL, $logindata));
+
 			if (isset($loginresult->error)) {
-				$error["login"] = "<b>Could not log in to Zopim. Please check your login details. If problem persists, try connecting without SSL enabled.</b>";
+				$error["login"] = "<b>Could not log in to Zopim. Please check your login details.</b>";
 				$gotologin = 1;
 				update_option('zopimSalt', "wronglogin");
 			} else if (isset($loginresult->salt)) {
@@ -53,15 +54,9 @@ function zopim_account_config() {
 		else {
 			update_option('zopimSalt', "wronglogin");
 			$gotologin = 1;
-			$error["login"] = "<b>Could not log in to Zopim. Please check your login details. If problem persists, try connecting without SSL enabled.</b>";
+			$error["login"] = "<b>Could not log in to Zopim. Please check your login details.</b>";
 		}
 	} else if (isset($_POST["action"]) && $_POST["action"]=="signup") {
-
-		if ($_POST["zopimUseSSL"] == "") {
-			$_POST["zopimUseSSL"] = "nossl";
-		}
-		update_option('zopimUseSSL', $_POST["zopimUseSSL"]);
-
 		$createdata = array(
 			"email" => $_POST["zopimnewemail"],
 			"first_name" => $_POST["zopimfirstname"],
@@ -85,8 +80,8 @@ function zopim_account_config() {
 	}
 
 	if (get_option('zopimCode') != "" && get_option('zopimCode') != "zopim") {
-
 		$accountDetails = getAccountDetails(get_option('zopimSalt'));
+
 		if (!isset($accountDetails) || isset($accountDetails->error)) {
 			$gotologin = 1;
 			$error["auth"] = '
@@ -105,6 +100,7 @@ function zopim_account_config() {
 	}
 
 	if ($authenticated == "ok") {
+
 		if ($accountDetails->package_id=="trial") {
 			$accountDetails->package_id = "Free Lite Package + 14 Days Full-features";
 		} else {
@@ -136,7 +132,7 @@ Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?>
 	<br/>
 	<textarea name="widget-options" style="width:680px; height: 200px;"><?php echo esc_textarea(zopim_get_widget_options()); ?></textarea>
 	<br/>
-	<input type="submit" value="Update widget options" />
+	<input class="button-primary" type="submit" value="Update widget options" />
 	</p>
 </form>
 
@@ -154,7 +150,7 @@ Congratulations on successfully installing the Zopim WordPress plugin!<br>
 		<div class="postbox">
 			<h3 class="hndle"><span>Link up with your Zopim account</span></h3>
 			<div style="padding:10px;">
-<?php if (isset($error) && isset($error["login"])) { echo $error["login"]; } ?>
+<?php if (isset($error) && isset($error["login"])) { echo '<span class="error">'.$error["login"].'</span>'; } ?>
 <form method="post" action="admin.php?page=zopim_account_config">
 	<input type="hidden" name="action" value="login">
 	<table class="form-table">
@@ -166,20 +162,20 @@ Congratulations on successfully installing the Zopim WordPress plugin!<br>
 
 			<tr valign="top">
 			<th scope="row">Zopim Password</th>
-			<td><input type="password" name="zopimPassword" value="<?php if (get_option('zopimSalt') != "") { echo "password"; }; ?>" /></td>
+			<td><input type="password" name="zopimPassword" value="" /></td>
 			</tr>
 
-			<tr valign="center">
+			<!--<tr valign="center">
 			<th scope="row">Use SSL</th>
 			<td><input type="checkbox" name="zopimUseSSL" value="zopimUseSSL" <?php if (get_option('zopimUseSSL') == "zopimUseSSL") { echo "checked='checked'"; } ?> /> uncheck this if you are unable to login</td>
-			</tr>
+			</tr>-->
 	 </table>
 		<br/>
 		The Zopim chat widget will display on your blog after your account is linked up.
 		<br/>
 		<p class="submit">
-		<input type="submit" class="button-primary" value="<?php _e('Link Up') ?>" />
-		&nbsp;Don't have a zopim account? <a href="<?php echo ZOPIM_SIGNUP_REDIRECT_URL; ?>" target="_blank" data-popup="true">Sign up now</a>.
+		<input id="linkup" type="submit" onclick="animateButton()" class="button-primary" value="<?php _e('Link Up') ?>" />
+		&nbsp;Don't have a Zopim account? <a href="<?php echo ZOPIM_SIGNUP_REDIRECT_URL; ?>" target="_blank" data-popup="true">Sign up now</a>.
 		</p>
 
 </form>

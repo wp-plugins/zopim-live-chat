@@ -2,8 +2,8 @@
 Contributors: bencxr
 Tags: chat, chat online, contact plugin, contact us, customer support, free chat, chat software, IM chat, live chat, live chat inc, live chat services, live chat software, live chatting, live help, live support, live web chat, livechat, live help, live support, olark, online chat, online support, php live chat, snapengage, support software, website chat, wordpress chat, wordpress live chat, wordpress live chat plugin, Zopim, zendesk, Zopim live chat, banckle, clickdesk, click desk
 Requires at least: 3.1
-Tested up to: 4.0.0
-Stable tag: 1.3.4
+Tested up to: 4.1.1
+Stable tag: 1.3.5
 
 Zopim lets you monitor and chat with visitors surfing your store in real-time. Impress them personally and ease them into their purchase.
 
@@ -41,13 +41,20 @@ With Zopim Live Chat, visitors to your website will be able to chat directly wit
 
 Should you need any assistance, feel free to chat with our customer advocates on www.zopim.com or email us at support@zopim.com
 
-What are you waiting for? Download Zopim Live Chat plugin now and <a href="https://www.zopim.com/?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bsignup#signup">sign up here</a> for a free account!
+What are you waiting for? Download Zopim Live Chat plugin now and <a href="https://account.zopim.com/?aref=MjUxMjY4:1TeORR:9SP1e-iPTuAVXROJA6UU5seC8x4&visit_id=6ffe00ec3cfc11e2b5ab22000a1db8fa&utm_source=wpdirectory&utm_medium=link&utm_campaign=wp%2Bsignup#signup">sign up here</a> for a free account!
 
 **See languages available, lovingly translated by Zopim users (in alphabetical order)**
 
 * Arabic | Bulgarian | Chinese | Croatian | Czech | Danish | Dutch; Flemish | Estonian | Faroese | Finnish | French | Georgian | German | Greek | Hebrew | Hungarian | Icelandic | Indonesian | Italian | Japanese | Korean | Kurdish | Latvian | Lithuanian | Macedonian | Malay | Norwegian Bokmal | Persian | Polish | Portuguese | Romanian | Russian | Serbian | Slovak | Slovenian | Spanish; Castilian | Swedish | Thai | Turkish | Ukranian | Urdu | Vietnamese
 
 == Changelog ==
+= 1.3.5 =
+* Update supported version to 4.1.1
+* Include Plugin's version number to footer (if Account is linked up)
+* Always use SSL to link account
+* Improved UI on login page to reduce confusion with SSL option and Password field
+* Update Signup Link
+
 = 1.3.4 =
 * Fix menu icon image
 
@@ -67,7 +74,6 @@ What are you waiting for? Download Zopim Live Chat plugin now and <a href="https
 * Removed Account Configuration, Customize and Dashboard sub-menu pages
 * Added Launch Dashboard link to open new browser tab to access Dashboard
 * Minor Code Fixes
-
 
 = 1.2.9 =
 * Revert back to iframe Customize and Dashboard instead of opening new window
