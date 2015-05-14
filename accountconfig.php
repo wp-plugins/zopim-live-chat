@@ -131,7 +131,7 @@ Currently Activated Account &rarr; <b><?php echo get_option('zopimUsername'); ?>
 </div>
 <?php } else { ?>
 <div id="icon-options-general" class="icon32"><br/></div><h2>Set up your Zopim Account</h2>
-<?php if ($error && $error["auth"]) {
+<?php if (isset($error["auth"])) {
 	echo $error["auth"];
 	} else if ($message == "") { ?>
 Congratulations on successfully installing the Zopim WordPress plugin!<br>
@@ -142,7 +142,7 @@ Congratulations on successfully installing the Zopim WordPress plugin!<br>
 		<div class="postbox">
 			<h3 class="hndle"><span>Link up with your Zopim account</span></h3>
 			<div style="padding:10px;">
-<?php if (isset($error) && isset($error["login"])) { echo '<span class="error">'.$error["login"].'</span>'; } ?>
+<?php if (isset($error["login"])) { echo '<span class="error">'.$error["login"].'</span>'; } ?>
 <form method="post" action="admin.php?page=zopim_account_config">
 	<input type="hidden" name="action" value="login">
 	<table class="form-table">
